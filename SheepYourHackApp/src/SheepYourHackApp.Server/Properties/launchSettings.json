@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "ActualNextjsApp.Server": {
+    "SheepYourHackApp.Server": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5003;http://localhost:5002",

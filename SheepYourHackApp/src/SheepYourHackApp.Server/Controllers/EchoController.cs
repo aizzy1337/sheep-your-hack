@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SheepYourHackApp.Server.Models;
+using SheepYourHackApp.Server.Models.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -25,32 +27,15 @@ namespace SheepYourHackApp.Server.Controllers
         [HttpGet("mapper")]
         public async Task<IActionResult> AutomapperTest()
         {
-            var test = new Test();
+            var test = new TestModel();
             test.Id = 1;
             test.Name = "test";
-            test.Description = "test";
 
-            var testDto = _mapper.Map<TestDto>(test);
+            var testDto = _mapper.Map<TestModelDto>(test);
 
 
             return Ok(testDto);
         }
     }
 
-
-    //Klasa bazowa
-    public class Test
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
-
-
-    //Jej dto, połączone są w helper
-    public class TestDto
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
 }

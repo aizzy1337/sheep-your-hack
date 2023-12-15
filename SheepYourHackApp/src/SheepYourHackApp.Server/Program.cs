@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SheepYourHackApp.Server.Data;
+using SheepYourHackApp.Server.HttpPipelines;
 using SheepYourHackHosting;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.Configure<SheepYourHackHostingOptions>(builder.Configuration.GetSection("NextjsStaticHosting"));
 builder.Services.AddNextjsStaticHosting();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDependencyInjection();
 
 var app = builder.Build();
 

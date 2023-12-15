@@ -14,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.Configure<SheepYourHackHostingOptions>(builder.Configuration.GetSection("NextjsStaticHosting"));
 builder.Services.AddNextjsStaticHosting();

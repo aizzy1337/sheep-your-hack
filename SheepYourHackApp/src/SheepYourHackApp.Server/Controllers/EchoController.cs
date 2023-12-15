@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SheepYourHackApp.Server.Handlers;
+using SheepYourHackApp.Server.Models;
+using SheepYourHackApp.Server.Models.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,10 +14,12 @@ namespace SheepYourHackApp.Server.Controllers
     public class EchoController : Controller
     {
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public EchoController(IMapper mapper)
+        public EchoController(IMapper mapper, IMediator mediator)
         {
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpGet("echo")]
@@ -25,32 +31,16 @@ namespace SheepYourHackApp.Server.Controllers
         [HttpGet("mapper")]
         public async Task<IActionResult> AutomapperTest()
         {
-            var test = new Test();
+            var test = new TestModel();
             test.Id = 1;
             test.Name = "test";
-            test.Description = "test";
 
-            var testDto = _mapper.Map<TestDto>(test);
+            var result = await _mediator.Send(new TestRequest(test));
 
+            var testDto = _mapper.Map<TestModelDto>(result);
 
             return Ok(testDto);
         }
     }
 
-
-    //Klasa bazowa
-    public class Test
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
-
-
-    //Jej dto, połączone są w helper
-    public class TestDto
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
 }

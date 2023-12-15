@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Routing.Patterns;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
 
-namespace NextjsStaticHosting.AspNetCore.Internals
+namespace SheepYourHackHosting.Internals
 {
     internal class NextjsEndpointDataSource : EndpointDataSource
     {
@@ -34,8 +34,8 @@ namespace NextjsStaticHosting.AspNetCore.Internals
             this.endpointRouteBuilder = endpointRouteBuilder ?? throw new ArgumentNullException(nameof(endpointRouteBuilder));
             this.staticFileOptionsProvider = staticFileOptionsProvider ?? throw new ArgumentNullException(nameof(staticFileOptionsProvider));
 
-            this.conventions = new List<Action<EndpointBuilder>>();
-            this.DefaultBuilder = new ConventionBuilder(this.conventions);
+            conventions = new List<Action<EndpointBuilder>>();
+            DefaultBuilder = new ConventionBuilder(conventions);
         }
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace NextjsStaticHosting.AspNetCore.Internals
         {
             get
             {
-                this.EnsureInitialized();
-                return this.endpoints;
+                EnsureInitialized();
+                return endpoints;
             }
         }
 
@@ -61,9 +61,9 @@ namespace NextjsStaticHosting.AspNetCore.Internals
 
         private void EnsureInitialized()
         {
-            if (this.endpoints == null)
+            if (endpoints == null)
             {
-                this.endpoints = this.Update();
+                endpoints = Update();
             }
         }
 
@@ -72,8 +72,8 @@ namespace NextjsStaticHosting.AspNetCore.Internals
             const string HtmlExtension = ".html";
             const string CatchAllSlugPrefix = "...";
 
-            var staticFileOptions = this.staticFileOptionsProvider.StaticFileOptions;
-            var requestDelegate = CreateRequestDelegate(this.endpointRouteBuilder, staticFileOptions);
+            var staticFileOptions = staticFileOptionsProvider.StaticFileOptions;
+            var requestDelegate = CreateRequestDelegate(endpointRouteBuilder, staticFileOptions);
             var endpoints = new List<Endpoint>();
             foreach (var filePath in TraverseFiles(staticFileOptions.FileProvider))
             {
@@ -132,7 +132,7 @@ namespace NextjsStaticHosting.AspNetCore.Internals
 
                 endpointBuilder.Metadata.Add(new StaticFileEndpointMetadata(filePath));
                 endpointBuilder.DisplayName = $"Next.js {filePath}";
-                foreach (var convention in this.conventions)
+                foreach (var convention in conventions)
                 {
                     convention(endpointBuilder);
                 }
@@ -198,7 +198,7 @@ namespace NextjsStaticHosting.AspNetCore.Internals
         {
             public StaticFileEndpointMetadata(string path)
             {
-                this.Path = path ?? throw new ArgumentNullException(nameof(path));
+                Path = path ?? throw new ArgumentNullException(nameof(path));
             }
 
             public string Path { get; }
@@ -215,7 +215,7 @@ namespace NextjsStaticHosting.AspNetCore.Internals
 
             public void Add(Action<EndpointBuilder> convention)
             {
-                this.conventions.Add(convention);
+                conventions.Add(convention);
             }
         }
     }

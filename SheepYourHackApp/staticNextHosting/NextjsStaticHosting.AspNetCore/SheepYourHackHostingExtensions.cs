@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NextjsStaticHosting.AspNetCore.Internals;
+using SheepYourHackHosting.Internals;
 
-namespace NextjsStaticHosting.AspNetCore
+namespace SheepYourHackHosting
 {
     /// <summary>
     /// Extension method to add support for hosting a Next.js statically generated client-side app on ASP .NET Core.

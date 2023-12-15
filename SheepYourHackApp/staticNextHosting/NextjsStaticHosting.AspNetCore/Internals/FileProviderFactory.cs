@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.FileProviders;
 
-namespace NextjsStaticHosting.AspNetCore.Internals
+namespace SheepYourHackHosting.Internals
 {
     internal class FileProviderFactory
     {

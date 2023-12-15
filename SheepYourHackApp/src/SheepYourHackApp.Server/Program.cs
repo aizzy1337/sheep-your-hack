@@ -1,12 +1,20 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NextjsStaticHosting.AspNetCore;
+using SheepYourHackApp.Server.Data;
+using SheepYourHackHosting;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationDbContext>(option =>
+{
+    option.UseSqlite(builder.Configuration.GetConnectionString("DefaultSQLiteConnection"));
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Step 1: Add Next.js hosting support
 builder.Services.Configure<SheepYourHackHostingOptions>(builder.Configuration.GetSection("NextjsStaticHosting"));
 builder.Services.AddNextjsStaticHosting();
 builder.Services.AddSwaggerGen();

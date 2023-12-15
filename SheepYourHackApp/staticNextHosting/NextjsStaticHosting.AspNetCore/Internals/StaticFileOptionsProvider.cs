@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
+using SheepYourHackHosting;
 
-namespace NextjsStaticHosting.AspNetCore.Internals
+namespace SheepYourHackHosting.Internals
 {
     /// <summary>
     /// Caches an instance of <see cref="StaticFileOptions"/>
@@ -28,7 +29,7 @@ namespace NextjsStaticHosting.AspNetCore.Internals
 
             string physicalRoot = Path.Combine(env.ContentRootPath, o.RootPath);
             var fileProvider = fileProviderFavtory.CreateFileProvider(physicalRoot);
-            this.StaticFileOptions = new StaticFileOptions
+            StaticFileOptions = new StaticFileOptions
             {
                 FileProvider = fileProvider,
             };

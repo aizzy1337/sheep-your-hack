@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NextjsStaticHosting.AspNetCore
+namespace SheepYourHackHosting
 {
     /// <summary>
     /// Options for hosting exported Next.js client-side applications on ASP .NET Core.

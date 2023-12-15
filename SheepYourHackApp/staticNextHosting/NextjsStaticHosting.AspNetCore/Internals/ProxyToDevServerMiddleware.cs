@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SheepYourHackHosting;
 using Yarp.ReverseProxy.Forwarder;
 
-namespace NextjsStaticHosting.AspNetCore.Internals
+namespace SheepYourHackHosting.Internals
 {
     internal class ProxyToDevServerMiddleware
     {
@@ -31,7 +32,7 @@ namespace NextjsStaticHosting.AspNetCore.Internals
                 throw new InvalidOperationException($"{nameof(ProxyToDevServerMiddleware)} should only be added when {nameof(options)}.{nameof(SheepYourHackHostingOptions.ProxyToDevServer)} is set and a valid {nameof(options)}.{nameof(SheepYourHackHostingOptions.DevServer)} is provided. This is a coding defect.");
             }
 
-            this.httpClient = new HttpMessageInvoker(new HttpClientHandler
+            httpClient = new HttpMessageInvoker(new HttpClientHandler
             {
                 AllowAutoRedirect = false,
                 AutomaticDecompression = DecompressionMethods.None,
@@ -47,7 +48,7 @@ namespace NextjsStaticHosting.AspNetCore.Internals
             {
                 // This request will be handled by someone else already, skip proxying to the dev Next.js server...
                 // Example scenario where we encounter this: a controller in the ASP .NET Core ap already claimed this route -- it should take precedence
-                await this.next(context);
+                await next(context);
                 return;
             }
 
@@ -67,7 +68,7 @@ namespace NextjsStaticHosting.AspNetCore.Internals
             }
 #endif
 
-            var error = await this.yarpForwarder.SendAsync(context, this.options.DevServer, this.httpClient, new ForwarderRequestConfig { ActivityTimeout = TimeSpan.FromMinutes(5) });
+            var error = await yarpForwarder.SendAsync(context, options.DevServer, httpClient, new ForwarderRequestConfig { ActivityTimeout = TimeSpan.FromMinutes(5) });
             switch (error)
             {
                 case ForwarderError.None:
@@ -82,10 +83,10 @@ namespace NextjsStaticHosting.AspNetCore.Internals
                     // An actual error...
                     {
                         string message =
-                            $"[NextjsStaticHosting.AspNetCore] Unable to reach Next.js dev server. Please ensure it is running at {this.options.DevServer}.{Environment.NewLine}" +
+                            $"[NextjsStaticHosting.AspNetCore] Unable to reach Next.js dev server. Please ensure it is running at {options.DevServer}.{Environment.NewLine}" +
                             $"If you are running in production and did not intend to proxy to a Next.js dev server, please ensure {nameof(SheepYourHackHostingOptions)}.{nameof(SheepYourHackHostingOptions.ProxyToDevServer)} is false.{Environment.NewLine}" +
                             $"YARP error: {error}";
-                        this.logger.LogError(message);
+                        logger.LogError(message);
                         if (!context.Response.HasStarted)
                         {
                             context.Response.ContentType = "text/plain";

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SheepYourHackApp.Server.Data;
 using SheepYourHackHosting;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 

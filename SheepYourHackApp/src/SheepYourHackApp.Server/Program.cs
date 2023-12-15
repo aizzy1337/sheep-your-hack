@@ -4,25 +4,24 @@ using NextjsStaticHosting.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 
 // Step 1: Add Next.js hosting support
 builder.Services.Configure<SheepYourHackHostingOptions>(builder.Configuration.GetSection("NextjsStaticHosting"));
 builder.Services.AddNextjsStaticHosting();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UseRouting();
 
-// Not necessary for the sample, added to demonstrate that controllers still work as usual
+app.UseRouting();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-// Step 2: Register dynamic endpoints to serve the correct HTML files at the right request paths.
-// Endpoints are created dynamically based on HTML files found under the specified RootPath during startup.
-// Endpoints are currently NOT refreshed if the files later change on disk.
-app.MapNextjsStaticHtmls();
+app.UseSwagger();
+app.UseSwaggerUI();
 
-// Step 3: Serve other required files (e.g. js, css files in the exported next.js app).
+app.MapNextjsStaticHtmls();
 app.UseNextjsStaticHosting();
 
 app.Run();

@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ActualNextjsApp.Server.Controllers
+namespace SheepYourHackApp.Server.Controllers
 {
+    [ApiController]
+    [Route("/api")]
     public class EchoController : Controller
     {
-        [Route("/api/echo")]
+        [Route("/echo")]
+        [HttpGet]
         public string Echo()
         {
             return "Hello world";

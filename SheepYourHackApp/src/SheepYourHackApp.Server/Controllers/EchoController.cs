@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SheepYourHackApp.Server.Handlers;
 using SheepYourHackApp.Server.Models;
 using SheepYourHackApp.Server.Models.DTO;
 using System.Collections.Generic;
@@ -12,10 +14,12 @@ namespace SheepYourHackApp.Server.Controllers
     public class EchoController : Controller
     {
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public EchoController(IMapper mapper)
+        public EchoController(IMapper mapper, IMediator mediator)
         {
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpGet("echo")]
@@ -31,8 +35,9 @@ namespace SheepYourHackApp.Server.Controllers
             test.Id = 1;
             test.Name = "test";
 
-            var testDto = _mapper.Map<TestModelDto>(test);
+            var result = await _mediator.Send(new TestRequest(test));
 
+            var testDto = _mapper.Map<TestModelDto>(result);
 
             return Ok(testDto);
         }

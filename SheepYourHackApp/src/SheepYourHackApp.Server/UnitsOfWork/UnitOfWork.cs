@@ -12,12 +12,14 @@ public class UnitOfWork : IUnitOfWork
     private readonly ILogger _logger;
 
     public IUserRepository Users { get; private set; }
+    public IGroupRepository Groups { get; private set; }
 
     public UnitOfWork(ApplicationDbContext context, ILoggerFactory logger)
     {
         _context = context;
         _logger = logger.CreateLogger("repositoryLogger");
         Users = new UserRepository(_context, _logger);
+        Groups = new GroupRepository(_context, _logger);
 
     }
 }

@@ -20,11 +20,13 @@ const StyledBox = styled(Box)({
   },
 });
 
+
+
 const MyGroupPage = () => {
   const [feeds, setFeeds] = useState<Feeds[]>()
 
   const fetchFeeds = async () => {
-    const res = await fetch('https://localhost:5003/api/Feeds/1')
+    const res = await fetch('https://localhost:5003/api/Feeds/1', {next: {revalidate: 0}})
     const data = await res.json()
     setFeeds(data)
   }

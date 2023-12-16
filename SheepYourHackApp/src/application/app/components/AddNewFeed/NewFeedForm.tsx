@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import { Avatar, Button, Checkbox, Divider, FormControlLabel, Icon, SvgIcon, Typography } from '@mui/material'
 import TextField from '@mui/material/TextField';
@@ -11,6 +11,7 @@ import teamsIcon from '../../../public/microsoft-teams-1.svg';
 import slackIcon from '../../../public/slack-new-logo.svg';
 import Image from 'next/image';
 import dayjs, { Dayjs } from 'dayjs';
+import { Start } from '@mui/icons-material';
 
 interface Props {
     type: string,
@@ -18,19 +19,162 @@ interface Props {
     close: () => void
 }
 
+interface User {
+    id: number,
+    firstname: string,
+    lastname: string,
+    nickname: string,
+    groupRole: number,
+    groupId: number
+  }
+
 const NewFeedForm = ({type, visibility, close}: Props) => {
 
     const [context, setContext] = useState<string>('')
     const [date, setDate] = useState<Dayjs | null>()
+    const [teams, setTeams] = useState<boolean>(false)
+    const [slack, setSlack] = useState<boolean>(false)
+    const [user, setUser] = useState<User>()
+    const [option1, setOption1] = useState<string>('')
+    const [option2, setOption2] = useState<string>('')
+    const [option3, setOption3] = useState<string>('')
+
+
+    const fetchUser = async () => {
+        const res =await fetch('https://localhost:5003/api/user/1')
+        const user = await res.json()
+        setUser(user)
+    }
+
+    useEffect(() => {
+        fetchUser()
+    },[])
 
     const clearForm = () => {
         setContext('')
         close()
     }
 
-    const handleSubmit = () => {
+    const handleTeamsChange = (e: any) => {
+        setTeams(!teams)
+    }
+
+    const handleSlackChange = (e: any) => {
+        setSlack(!slack)
+    }
+
+    const handleSubmit = async () => {
+        const date = new Date()
         clearForm()
-        //fetch('http..', {POST})
+        if(type=="POST") {
+            const newFeed = {
+                Message: context,
+                UserNickname: user?.nickname,
+                UserId: user?.id,
+                CreationDate: date,
+                FeedType: 0
+            }
+            const res = await fetch('http://localhost:5002/api/Feeds', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            if(teams) {
+                await fetch('http://localhost:5002/api/Feeds/teams', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            } 
+            if(slack) {
+                await fetch('http://localhost:5002/api/Feeds/slack', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            } 
+        }
+        if(type=="EVENT") {
+            const newFeed = {
+                Message: context,
+                UserNickname: user?.nickname,
+                UserId: user?.id,
+                event:{
+                    name: context,
+                    StartTime: date,
+                    EndTime: date?.add(3, 'hours'),
+                    organizator: 'Some Rich Daddy',
+                    type: 1
+                },
+                CreationDate: Date.now(),
+                FeedType: 1
+            }
+            await fetch('http://localhost:5002/api/Feeds', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            if(teams) {
+                await fetch('http://localhost:5002/api/Feeds/teams', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            } 
+            if(slack) {
+                await fetch('http://localhost:5002/api/Feeds/slack', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            } 
+        }
+        if(type=="FORM") {
+            const options = [
+                {
+                    id: 0,
+                    name: option1
+                },
+                {
+                    id: 1,
+                    name: option2
+                },
+                {
+                    id: 2,
+                    name: option3
+                }
+            ]
+            const newFeed = {
+                Message: context,
+                UserNickname: user?.nickname,
+                UserId: user?.id,
+                poll:{
+                    name: context,
+                    options
+                },
+                CreationDate: Date.now(),
+                FeedType: 2
+            }
+            await fetch('http://localhost:5002/api/Feeds', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            if(teams) {
+                await fetch('http://localhost:5002/api/Feeds/teams', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            } 
+            if(slack) {
+                await fetch('http://localhost:5002/api/Feeds/slack', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newFeed), 
+                })
+            } 
+        }
     }
         return (
             <Box 
@@ -88,15 +232,15 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                             <Typography>Dodaj ankiete</Typography>
                             <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                 <RadioButtonUncheckedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                <TextField id="input-with-sx" label="Pytanie nr 1" variant="standard" />
+                                <TextField value={option1} onChange={(e) => setOption1(e.target.value)} id="input-with-sx" label="Pytanie nr 1" variant="standard" />
                             </Box>
                             <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                 <RadioButtonUncheckedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                <TextField id="input-with-sx" label="Pytanie nr 2" variant="standard" />
+                                <TextField value={option2} onChange={(e) => setOption2(e.target.value)} id="input-with-sx" label="Pytanie nr 2" variant="standard" />
                             </Box>
                             <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                 <RadioButtonUncheckedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                <TextField id="input-with-sx" label="Pytanie nr 3" variant="standard" />
+                                <TextField value={option3} onChange={(e) => setOption3(e.target.value)} id="input-with-sx" label="Pytanie nr 3" variant="standard" />
                             </Box>
                         </Box>
                     
@@ -106,7 +250,7 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                             <Box display='flex' justifyContent="center" alignItems="center" gap={3} sx={{mr: 'auto'}}>
                                 <Typography sx={{fontWeight: 'bold'}}>Wyślij na:</Typography>
                                 <Box display='flex' justifyContent="center" alignItems="center" gap={1}>
-                                    <Checkbox />
+                                    <Checkbox value={teams} onChange={handleTeamsChange}/>
                                     <Image
                                             src={teamsIcon}
                                             alt="LOGO"
@@ -117,7 +261,7 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                                     <Typography>Teams</Typography>
                                 </Box>
                                 <Box display='flex' justifyContent="center" alignItems="center" gap={1}>
-                                    <Checkbox />
+                                    <Checkbox value={slack} onChange={handleSlackChange}/>
                                     <Image
                                             src={slackIcon}
                                             alt="LOGO"
@@ -136,6 +280,5 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                 </Box>
             </Box>
           )
-    }
-
+}
 export default NewFeedForm

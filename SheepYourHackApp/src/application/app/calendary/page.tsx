@@ -18,7 +18,6 @@ const CalendaryPage = () => {
 
     const [counter, setCounter] = useState<number>(0)
     const [header, setHeader] = useState<string>('')
-    console.log('parent:', counter)
     const events: Event[] = [
         {
             title: "Title",

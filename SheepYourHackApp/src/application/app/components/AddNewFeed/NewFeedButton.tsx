@@ -10,23 +10,23 @@ interface Props {
 const NewFeedButton = ({handleClick}: Props) => {
 
   return (
-    <Box sx={{
-        borderRadius: '50%', 
-        height: '60px', 
-        width: '60px', 
-        position:'fixed', 
-        bottom:'30px', 
-        right:'30px',
-        bgcolor: '#343432',
-        color: 'white',
-        cursor: 'pointer',
-    visibility: ''}} 
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-        onClick ={handleClick}>
-        <AddIcon sx={{fontSize: '40px'}} />
-    </Box>
+    // <Box sx={{
+    // //     borderRadius: '50%', 
+    // //     height: '60px', 
+    // //     width: '60px', 
+    // //     position:'fixed', 
+    // //     bottom:'30px', 
+    // //     right:'30px',
+    // //     bgcolor: '#343432',
+    // //     color: 'white',
+    // //     cursor: 'pointer',
+    // // visibility: ''}} 
+    // //     display='flex'
+    // //     justifyContent='center'
+    // //     alignItems='center'
+    // //     onClick ={handleClick}>
+    // //     <AddIcon sx={{fontSize: '40px'}} />
+    // </Box>
   )
 }
 

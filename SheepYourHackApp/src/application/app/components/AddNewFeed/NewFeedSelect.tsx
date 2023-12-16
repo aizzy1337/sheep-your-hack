@@ -1,8 +1,13 @@
 'use client'
 import React, { useState } from 'react'
 import Box from '@mui/material/Box'
-import { Button } from '@mui/material'
-import NewFeedForm from './NewFeedForm'
+import { Button, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material'
+import PollIcon from '@mui/icons-material/Poll';
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+import EventIcon from '@mui/icons-material/Event';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import NewFeedForm from './NewFeedForm';
 
 interface Props {
     visibility: string
@@ -22,52 +27,30 @@ const NewFeedSelect = ({visibility}: Props) => {
         setOpenForm(false)
     }
 
+    const actions = [
+        { icon: <PollIcon />, name: 'Ankieta', action: 'FORM' },
+        { icon: <EventIcon />, name: 'Wydarzenie', action: 'EVENT' },
+        { icon: <PostAddIcon />, name: 'Post', action: 'POST'},
+      ];
 
   return (
-    <Box 
-    sx={{
-        height: '200px',
-        width: '250px',
-        bgcolor: '#343432',
-        position: 'fixed',
-        bottom: '100px',
-        right: '30px',
-        borderRadius: '10px',
-        visibility: visibility
-    }}
-    display='flex'
-    flexDirection='column'
-    justifyContent='space-around'
-    alignItems='center'
-    >
-        <Button 
-            variant="contained" 
-            color="secondary" 
-            sx={{width: '80%', height: '20%'}}
-            onClick={() => handleOpen('POST')}
-            >
-                Post
-        </Button>
-        <Button 
-            variant="contained" 
-            color="secondary" 
-            sx={{width: '80%', height: '20%'}}
-            onClick={() => handleOpen('EVENT')}
-            >
-                Wydarzenie
-        </Button>
-        <Button 
-            variant="contained" 
-            color="secondary" 
-            sx={{width: '80%', height: '20%'}}
-            onClick={() => handleOpen('FORM')}
-            >
-                Ankieta
-        </Button>
+    <>
+        <SpeedDial ariaLabel="SpeedDial basic example" icon={<SpeedDialIcon />} sx={{ position: 'fixed', bottom: '16px', right: '16px' }}>
+        {actions.map((action) => (
+            <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={() => {
+                handleOpen(action.action)
+           }}
+            />
+  ))}
+        </SpeedDial>
         {openForm ?
         <NewFeedForm type={type!} visibility='flex' close={handleClose} /> 
-        : <NewFeedForm type={type!} visibility='none' close={handleClose}/>}
-    </Box>
+         : <NewFeedForm type={type!} visibility='none' close={handleClose}/>}
+    </>
   )
 }
 

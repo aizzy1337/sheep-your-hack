@@ -1,50 +1,72 @@
 import  Paper  from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import React from 'react'
-import {Typography}  from '@mui/material';
+import {Avatar, Button, ButtonGroup, Divider, Rating, Typography}  from '@mui/material';
 import AuthorAvatar from './AuthorAvatar';
 import EventIcons from './EventIcons';
+import PostFeed from './PostFeed';
+import EventFeed from './EventFeed';
+import FormFeed from './FormFeed';
+import { blueGrey, deepOrange, deepPurple, green } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ShareIcon from '@mui/icons-material/Share';
+import { ThumbDown } from '@mui/icons-material';
+import { Poll } from '@/app/types';
 
 interface Props {
     content: string,
-    type: string
+    type: string,
+    formData: Poll | null
 }
 
-const Feed = ({content, type}: Props) => {
+const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#ff6d75',
+    },
+    '& .MuiRating-iconHover': {
+      color: '#ff3d47',
+    },
+  });
 
-    if(type == "POST"){
+const Feed = ({content, type, formData}: Props) => {
     return (
-        <Paper sx={{width: '600px', p: '20px', border: 'solid 2px #DE4C30', borderRadius: '10px', paddingLeft: '30px'}}>
-            <Box>
-                <AuthorAvatar />
-                <Box marginBottom={2}>
-                    <h4>Title</h4>
-                    <Typography>10:00 - 12:30</Typography>
+        <Box width="60%">
+            <Paper elevation={3}>
+                <Box display="flex" justifyContent="start" alignItems="center">
+                    <Box display="flex" justifyContent="center" alignItems="start" gap="1rem" sx={{m: '1rem'}}>
+                        <Avatar sx={{ bgcolor: green[300] }}>K</Avatar>
+                        <Box>
+                            <Typography sx={{ fontWeight: 'bold' }} variant='body2'>Kamil Salamonczyk</Typography>
+                            <Typography sx={{color: 'grey'}} variant='body2'>Manager</Typography>
+                        </Box>
+                    </Box>
                 </Box>
-                <Typography align='justify'>
-                    {content}
-                </Typography>
-            </Box>
-        </Paper>
-    )
-    }
-    if(type == "EVENT"){
-    return (
-        <Paper sx={{width: '600px', p: '20px', border: 'solid 2px #9CC69B', borderRadius: '10px'}} >
-            <Box display='flex' flexDirection='column'>
-                <AuthorAvatar />
-                <Box marginBottom={2}>
-                    <h4>Title</h4>
-                    <Typography>10:00 - 12:30</Typography>
+                {type == "POST" ? 
+                    <PostFeed content={content}></PostFeed> 
+                    : 
+                    type == "EVENT" 
+                    ? 
+                    <EventFeed content={content}></EventFeed> 
+                    : 
+                    <FormFeed content={content} formData={formData!}></FormFeed>}
+                <Box sx={{width: '100%', display: 'flex', justifyContent: 'center', mb: '0.5rem'}}>
+                    <Box sx={{display: 'flex', width: '90%', gap: '1rem', color: 'grey'}}>
+                        <Typography>#food</Typography>
+                        <Typography>#quicklunch</Typography>
+                        <Typography>#eathealthy</Typography>
+                    </Box>
+                    
                 </Box>
-                <Typography align='justify'>
-                    {content}
-                </Typography>
-                <EventIcons />
-            </Box>
-        </Paper>
+                <Divider sx={{width: '100%'}}></Divider>
+                <Box sx={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                    <Button sx={{width: '100%'}} startIcon={<ThumbUpIcon />}>Jestem zainteresowany!</Button>
+                    <Button sx={{width: '100%'}} startIcon={<ThumbDown />}>{"Nie jestem zainteresowany"}</Button>
+                </Box>
+            </Paper>
+        </Box>
     )
-    }
 }
 
-export default Feed
+export default Feed;

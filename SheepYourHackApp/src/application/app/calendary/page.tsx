@@ -124,7 +124,6 @@ const CalendaryPage = () => {
                     sx={{
                         width: '70%',
                         height: '80%',
-                        border: 'solid 2px #9CC69B',
                         borderRadius: '20px'
                     }}>
                         <CalendaryHeader header={header} rightArrClick={handleRight} leftArrClick={handleLeft}/>

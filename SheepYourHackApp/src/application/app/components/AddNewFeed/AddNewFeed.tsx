@@ -6,7 +6,7 @@ import NewFeedSelect from './NewFeedSelect'
 
 const AddNewFeed = () => {
 
-    const [visibility, setVisibility] = useState<boolean>(false)
+    const [visibility, setVisibility] = useState<boolean>(true)
 
 
     const handleClick = () => {
@@ -15,8 +15,7 @@ const AddNewFeed = () => {
     
   return (
     <Box>
-        <NewFeedButton handleClick={handleClick}/>
-        {visibility ? <NewFeedSelect visibility='visible'/> : <NewFeedSelect visibility='hidden'/>}
+      <NewFeedSelect visibility='visible'></NewFeedSelect>
     </Box>
   )
 }

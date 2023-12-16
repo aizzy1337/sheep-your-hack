@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
 import Box from '@mui/material/Box';
-import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
-import {Typography}  from '@mui/material';
+import {IconButton, Typography}  from '@mui/material';
 
 interface Props {
   rightArrClick: () => void,
@@ -15,9 +15,13 @@ const CalendaryHeader = ({rightArrClick, leftArrClick, header}: Props) => {
   
   return (
     <Box display='flex' sx={{marginTop: '16px'}} gap={5}>
-        <ArrowCircleLeftOutlinedIcon sx={{fontSize: '36px'}} onClick={leftArrClick}/>
-        <Typography sx={{fontSize: '28px'}}>{header}</Typography>
-        <ArrowCircleRightOutlinedIcon sx={{fontSize: '36px'}} onClick={rightArrClick}/>
+      <IconButton size="large" color="primary">
+        <ArrowBackIosIcon id="arrowicon" sx={{fontSize: '36px'}} onClick={leftArrClick}/>
+      </IconButton>
+      <Typography variant='h3' sx={{fontSize: '28px', alignSelf: 'center'}}>{header}</Typography>
+      <IconButton size="large" color="primary">
+        <ArrowBackIosIcon id="arrowicon" sx={{fontSize: '36px'}} className='icon-flipped' onClick={rightArrClick}/>
+      </IconButton>
     </Box>
   )
 }

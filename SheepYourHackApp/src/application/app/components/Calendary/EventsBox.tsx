@@ -50,7 +50,7 @@ const EventsBox = ({counter, data}: Props, ) => {
   return (
     <Box display='flex' gap={10}>
         {workTimeEvents?.length!>0 && 
-        <Box display='flex' flexDirection='column'>
+        <Box display='flex' flexDirection='column' gap={3}>
             <h3>W pracy</h3>
             {workTimeEvents!.map(e => <SingleEvent title={e.title} hour={e.hour} place={e.place} />)}
         </Box>

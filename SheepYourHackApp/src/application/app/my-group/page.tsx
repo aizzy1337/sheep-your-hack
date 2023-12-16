@@ -28,39 +28,7 @@ const MyGroupPage = () => {
 
 
   return (
-    // <Box display='flex' maxHeight='90vh' width='100vw'>
-    //   <StyledBox
-    //     display='flex'
-    //     justifyContent='center'
-    //     width='100%'
-    //     padding='10px'
-    //   >
-    //     <Box display={'flex'}
-    //       flexDirection='column'
-    //       style={{ gap: 20 }}
-    //       margin="30px"
-    //     >
-    //       <Feed content={context1} type="POST" />
-    //       <Feed content={context3} type="EVENT" />
-    //       <Feed content={context2} type="POST" />
-    //       <Feed content={context1} type="POST" />
-    //       <Feed content={context3} type="EVENT" />
-    //     </Box>
-    //     <Box display={'flex'}
-    //       flexDirection='column'
-    //       style={{ gap: 20 }}
-    //       margin="30px"
-    //     >
-    //       <Feed content={context2} type="EVENT" />
-    //       <Feed content={context1} type="POST" />
-    //       <Feed content={context3} type="POST" />
-    //       <Feed content={context3} type="EVENT" />
-    //       <Feed content={context1} type="POST" />
-    //     </Box>
-    //   </StyledBox>
-    //   <AddNewFeed />
-    // </Box>
-    <Box width="100%" display="flex" alignItems="center" flexDirection="column" gap="2rem" sx={{mt: '2rem'}}>
+    <Box width="100%" display="flex" alignItems="center" flexDirection="column" gap={6} sx={{mt: '2rem'}}>
       <Feed content={context1} type="POST" />
       <Feed content={context3} type="EVENT" />
       <Feed content={context3} type="POST" />

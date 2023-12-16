@@ -1,5 +1,7 @@
-﻿namespace SheepYourHackApp.Server.Repositories.Interfaces;
+﻿using SheepYourHackApp.Server.Models;
 
-public interface IUserRepository
+namespace SheepYourHackApp.Server.Repositories.Interfaces;
+
+public interface IUserRepository : IRepository<User>
 {
 }

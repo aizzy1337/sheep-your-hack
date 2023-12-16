@@ -13,11 +13,7 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.ConfigureLogging(logging =>
-{
-    logging.ClearProviders();
-    logging.AddConsole();
-});
+
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
     option.UseSqlite(builder.Configuration.GetConnectionString("DefaultSQLiteConnection"));

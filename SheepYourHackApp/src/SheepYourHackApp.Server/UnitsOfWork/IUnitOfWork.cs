@@ -8,4 +8,6 @@ public interface IUnitOfWork
     IGroupRepository Groups { get; }
     IFeedRepository Feeds { get; }
     IEventRepository Events { get; }
+    IPollRepository Polls { get; }
+    IOptionRepository Options { get; }
 }

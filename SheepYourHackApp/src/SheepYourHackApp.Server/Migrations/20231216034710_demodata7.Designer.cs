@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SheepYourHackApp.Server.Data;
 
@@ -10,9 +11,11 @@ using SheepYourHackApp.Server.Data;
 namespace SheepYourHackApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231216034710_demodata7")]
+    partial class demodata7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
@@ -52,31 +55,31 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndDate = new DateTime(2023, 12, 19, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9914),
+                            EndDate = new DateTime(2023, 12, 19, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(5083),
                             FeedId = 1,
                             Name = "EventA",
                             Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9924),
+                            StartDate = new DateTime(2023, 12, 16, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(5088),
                             Type = 0
                         },
                         new
                         {
                             Id = 2,
-                            EndDate = new DateTime(2023, 12, 18, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9932),
+                            EndDate = new DateTime(2023, 12, 18, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(5092),
                             FeedId = 2,
                             Name = "EventB",
                             Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9938),
+                            StartDate = new DateTime(2023, 12, 16, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(5099),
                             Type = 1
                         },
                         new
                         {
                             Id = 3,
-                            EndDate = new DateTime(2023, 12, 20, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9946),
+                            EndDate = new DateTime(2023, 12, 20, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(5103),
                             FeedId = 3,
                             Name = "EventC",
                             Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9951),
+                            StartDate = new DateTime(2023, 12, 16, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(5105),
                             Type = 0
                         });
                 });
@@ -109,7 +112,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9591),
+                            CreationDate = new DateTime(2023, 12, 16, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(4926),
                             Message = "Free webinar about something",
                             Type = 1,
                             UserId = 5
@@ -117,7 +120,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2023, 12, 15, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9711),
+                            CreationDate = new DateTime(2023, 12, 15, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(4985),
                             Message = "Free webinar about something",
                             Type = 1,
                             UserId = 5
@@ -125,7 +128,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2023, 12, 4, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9724),
+                            CreationDate = new DateTime(2023, 12, 4, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(4991),
                             Message = "Free webinar about something",
                             Type = 1,
                             UserId = 5
@@ -133,31 +136,15 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 4,
-                            CreationDate = new DateTime(2023, 11, 25, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9731),
-                            Message = "Free webinar about something",
-                            Type = 2,
-                            UserId = 5
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9739),
-                            Message = "Free webinar about something",
-                            Type = 2,
-                            UserId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9746),
+                            CreationDate = new DateTime(2023, 11, 25, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(5010),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
                         },
                         new
                         {
-                            Id = 7,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9760),
+                            Id = 5,
+                            CreationDate = new DateTime(2023, 12, 13, 4, 47, 10, 5, DateTimeKind.Local).AddTicks(5014),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
@@ -266,9 +253,6 @@ namespace SheepYourHackApp.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("PollId")
                         .HasColumnType("INTEGER");
 
@@ -277,20 +261,6 @@ namespace SheepYourHackApp.Server.Migrations
                     b.HasIndex("PollId");
 
                     b.ToTable("Options");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Bardzo kocham boga",
-                            PollId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Bardzo nienawidzę boga",
-                            PollId = 1
-                        });
                 });
 
             modelBuilder.Entity("SheepYourHackApp.Server.Models.Poll", b =>

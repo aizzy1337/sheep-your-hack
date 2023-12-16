@@ -1,46 +1,15 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using SheepYourHackApp.Server.Handlers;
-using SheepYourHackApp.Server.Models;
-using SheepYourHackApp.Server.Models.DTO;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace SheepYourHackApp.Server.Controllers
+namespace ActualNextjsApp.Server.Controllers
 {
-    [ApiController]
-    [Route("/api")]
     public class EchoController : Controller
     {
-        private readonly IMapper _mapper;
-        private readonly IMediator _mediator;
+        [Route("/api/echo")]
 
-        public EchoController(IMapper mapper, IMediator mediator)
+        
+        public string Echo()
         {
-            _mapper = mapper;
-            _mediator = mediator;
-        }
-
-        [HttpGet("echo")]
-        public async Task<IActionResult> Echo()
-        {
-            return Ok();
-        }
-
-        [HttpGet("mapper")]
-        public async Task<IActionResult> AutomapperTest()
-        {
-            //var test = new TestModel();
-            //test.Id = 1;
-            //test.Name = "test";
-
-            //var result = await _mediator.Send(new TestRequest(test));
-
-            //var testDto = _mapper.Map<TestModelDto>(result);
-
-            return Ok();
+            return "Hello world";
         }
     }
-
 }

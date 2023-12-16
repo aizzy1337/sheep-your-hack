@@ -5,7 +5,12 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using SheepYourHackApp.Server.Handlers;
 using SheepYourHackApp.Server.Models.DTO;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System;
+using SheepYourHackApp.Server.Extensions;
 
 namespace SheepYourHackApp.Server.Controllers
 {
@@ -34,6 +39,8 @@ namespace SheepYourHackApp.Server.Controllers
         public async Task<IActionResult> Post([FromBody] FeedDto feedDto)
         {
             await _mediator.Send(new CreateFeedCommandRequest(feedDto));
+
+            await TeamsWebhook.SendTeamsNotification(feedDto);
 
             return Ok(feedDto);
         }

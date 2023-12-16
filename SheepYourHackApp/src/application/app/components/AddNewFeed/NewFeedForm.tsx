@@ -39,7 +39,7 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
     const [option2, setOption2] = useState<string>('')
     const [option3, setOption3] = useState<string>('')
 
-    const API = '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';
+    const API = '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';
     
     const [userPrompt, setUserPrompt] = useState('');
 

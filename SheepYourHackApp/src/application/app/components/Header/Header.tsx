@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import HeaderIcons from './HeaderIcons';
 import Image from 'next/image';
 import logo from '../../../public/logo.png';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -14,14 +15,15 @@ const Header = () => {
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Box sx={{display: 'flex'}}>
-              <Image
-                src={logo}
-                alt="LOGO"
-                width={0}
-                height={0}
-                style={{ width: '60px', height: 'auto' }}
-              />
-              <Typography textAlign="center" variant='h5' sx={{fontWeight: 'bold', color: '#333533'}}>Easy Balance</Typography>
+              <Link id="linklogo" href="/my-group">
+                <Image
+                  src={logo}
+                  alt="LOGO"
+                  width={0}
+                  height={0}
+                  style={{ width: '60px', height: 'auto' }}
+                />
+              </Link>
             </Box>
           </Typography>
           <HeaderIcons />

@@ -6,13 +6,12 @@ import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import dayjs, { Dayjs } from 'dayjs';
 import teamsIcon from '../../../public/microsoft-teams-1.svg';
 import slackIcon from '../../../public/slack-new-logo.svg';
 import Image from 'next/image';
 import dayjs, { Dayjs } from 'dayjs';
 import { Start } from '@mui/icons-material';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 
 interface Props {
     type: string,
@@ -32,7 +31,7 @@ interface User {
 const NewFeedForm = ({type, visibility, close}: Props) => {
 
     const [context, setContext] = useState<string>('')
-    const [date, setDate] = useState<Dayjs | null>()
+    const [date, setDate] = useState<any>()
     const [teams, setTeams] = useState<boolean>(false)
     const [slack, setSlack] = useState<boolean>(false)
     const [user, setUser] = useState<User>()
@@ -40,28 +39,50 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
     const [option2, setOption2] = useState<string>('')
     const [option3, setOption3] = useState<string>('')
 
+    const API = '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';
+    
+    const [userPrompt, setUserPrompt] = useState('');
 
-    const fetchUser = async () => {
-        const res =await fetch('https://localhost:5003/api/user/1')
-        const user = await res.json()
-        setUser(user)
-    }
+    const [isTyping, setIsTyping] = useState(false);
 
-    useEffect(() => {
-        fetchUser()
-    },[])
+    const handleSendRequest = async () => {
+        setIsTyping(true);
 
-    const clearForm = () => {
-        setContext('')
-        close()
-    }
+        try {
+            const response = await processMessageToChatGPT(userPrompt);
 
-    const handleTeamsChange = (e: any) => {
-        setTeams(!teams)
-    }
+            const content = response.choices[0]?.message?.content;
+            if (content) {
+                setContext(content);
+                console.log(content);
+            }
+        } catch (error) {
+            console.error("Error processing message:", error);
+        } finally {
+            setIsTyping(false);
+        }
+    };
 
-    const handleSlackChange = (e: any) => {
-        setSlack(!slack)
+    async function processMessageToChatGPT(message: string) {
+        const prompt = {role: "user", content: message};
+
+        const apiRequestBody = {
+          "model": "gpt-3.5-turbo",
+          "messages": [
+            { role: "system", content: "Jesteś pomocnym asystentem który pomaga tworzyć wydarzenia dla HR w firmie. Odpowiadaj po polsku, twórz krótkie 3 zdaniowe odpowiedzi." },
+            prompt,
+          ],
+        };
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Authorization": "Bearer " + API,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(apiRequestBody),
+        });
+    
+        return response.json();
     }
 
     const handleSubmit = async () => {
@@ -103,11 +124,11 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                 event:{
                     name: context,
                     StartTime: date,
-                    EndTime: date?.add(3, 'hours'),
+                    EndTime: date?.setHours(date.getHours() + 3),
                     organizator: 'Some Rich Daddy',
                     type: 1
                 },
-                CreationDate: Date.now(),
+                CreationDate: new Date(),
                 FeedType: 1
             }
             await fetch('http://localhost:5002/api/Feeds', {
@@ -177,6 +198,31 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
             } 
         }
     }
+
+    const fetchUser = async () => {
+        const res =await fetch('https://localhost:5003/api/user/1')
+        const user = await res.json()
+        setUser(user)
+    }
+
+    useEffect(() => {
+        fetchUser()
+    },[])
+
+
+    const clearForm = () => {
+        setContext('')
+        close()
+    }
+
+    const handleTeamsChange = (e: any) => {
+        setTeams(!teams)
+    }
+
+    const handleSlackChange = (e: any) => {
+        setSlack(!slack)
+    }
+
         return (
             <Box 
                 sx={{
@@ -224,6 +270,8 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                             
                         }}
                     />
+                    <TextField sx={{width: "90%"}} value={userPrompt} onChange={(e) => setUserPrompt(e.target.value)}></TextField>
+                    <Button variant="outlined" onClick={handleSendRequest}>Ask GPT</Button>
                     
 
                     {type == "FORM" ? 
@@ -281,3 +329,7 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
           )
 }
 export default NewFeedForm
+
+function moment() {
+    throw new Error('Function not implemented.');
+}

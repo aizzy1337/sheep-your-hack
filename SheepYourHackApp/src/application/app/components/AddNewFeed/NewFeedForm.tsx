@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Box from '@mui/material/Box'
-import { Button, Divider, Icon, Typography } from '@mui/material'
+import { Avatar, Button, Checkbox, Divider, FormControlLabel, Icon, SvgIcon, Typography } from '@mui/material'
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -9,6 +9,8 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import teamsIcon from '../../../public/microsoft-teams-1.svg';
 import slackIcon from '../../../public/slack-new-logo.svg';
+import Image from 'next/image';
+
 interface Props {
     type: string,
     visibility: string,
@@ -18,7 +20,6 @@ interface Props {
 const NewFeedForm = ({type, visibility, close}: Props) => {
 
     const [context, setContext] = useState<string>('')
-    console.log(context)
 
     const clearForm = () => {
         setContext('')
@@ -98,10 +99,35 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                     : <></>}
 
                     <Box display='flex' justifyContent='end' sx={{width: '90%'}}>
-                        <Box display='flex' gap={5}>
-                            <Button variant="contained" color="primary" onClick={close} >Anuluj</Button>
-                            <Button variant="contained" color="primary" onClick={handleSubmit} >Zapisz</Button>
-                        </Box>
+                            <Box display='flex' justifyContent="center" alignItems="center" gap={3} sx={{mr: 'auto'}}>
+                                <Typography sx={{fontWeight: 'bold'}}>Wyślij na:</Typography>
+                                <Box display='flex' justifyContent="center" alignItems="center" gap={1}>
+                                    <Checkbox />
+                                    <Image
+                                            src={teamsIcon}
+                                            alt="LOGO"
+                                            width={0}
+                                            height={0}
+                                            style={{ width: '25px', height: 'auto', marginLeft: '-8px' }}
+                                    />
+                                    <Typography>Teams</Typography>
+                                </Box>
+                                <Box display='flex' justifyContent="center" alignItems="center" gap={1}>
+                                    <Checkbox />
+                                    <Image
+                                            src={slackIcon}
+                                            alt="LOGO"
+                                            width={0}
+                                            height={0}
+                                            style={{ width: '20px', height: 'auto', marginLeft: '-8px' }}
+                                    />
+                                    <Typography >Slack</Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" gap={5}>
+                                <Button variant="contained" color="primary" onClick={close} >Anuluj</Button>
+                                <Button variant="contained" color="primary" onClick={handleSubmit} >Zapisz</Button>
+                            </Box>
                     </Box>
                 </Box>
             </Box>

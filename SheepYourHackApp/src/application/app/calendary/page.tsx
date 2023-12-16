@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import CalendaryHeader from '../components/Calendary/CalendaryHeader';
 import EventsBox from '../components/Calendary/EventsBox';
 import { groupEventsByDay } from '../utils/calendaryEvents';
+import { Divider, Paper } from '@mui/material';
 
 interface Event {
     title: string,
@@ -118,6 +119,7 @@ const CalendaryPage = () => {
             }}
             >
                 <Box
+                    component={Paper}
                     display='flex'
                     flexDirection='column'
                     alignItems='center'
@@ -127,6 +129,7 @@ const CalendaryPage = () => {
                         borderRadius: '20px'
                     }}>
                         <CalendaryHeader header={header} rightArrClick={handleRight} leftArrClick={handleLeft}/>
+                        <Divider sx={{width: '100%', mt: '1rem', mb: '1rem'}}></Divider>
                         <EventsBox counter={counter} data={events} />
                 </Box>
         </Box>

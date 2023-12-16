@@ -1,6 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import { Paper, Typography } from '@mui/material';
+import { Grid, Paper, Stack, Typography } from '@mui/material';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 interface Props {
     title: string,
@@ -10,13 +11,15 @@ interface Props {
 
 const SingleEvent = ({title, place, hour}: Props) => {
   return (
-    <Paper sx={{p: '1rem', width: '10rem'}}>
+    <Paper elevation={4} square={false} sx={{p: '1rem', width: '80%', mb: '2rem'}}>
       <Box>
           <Typography sx={{ fontWeight: 'bold' }} variant='body1'>{title}</Typography>
-          <Typography sx={{color: 'grey'}} variant='body2'>{place}</Typography>
+          <Typography sx={{color: 'grey', mt: '-8px'}} variant='body2'>{place}</Typography>
       </Box>
-
-      <Typography sx={{mt: '2rem'}} variant='body2'>{hour}</Typography>
+      <Box sx={{display: 'flex', alignItems: "start", justifyContent: "start"}} >
+          <AccessTimeIcon></AccessTimeIcon>
+          <Typography variant='body1'>{hour}</Typography>
+      </Box >
     </Paper>
   )
 }

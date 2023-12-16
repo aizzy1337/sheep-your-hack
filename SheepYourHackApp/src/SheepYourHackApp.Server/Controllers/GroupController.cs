@@ -10,31 +10,31 @@ namespace SheepYourHackApp.Server.Controllers
 {
     [ApiController]
     [Route("/api/[Controller]")]
-    public class UserController : Controller
+    public class GroupController : Controller
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public UserController(IMapper mapper, IMediator mediator)
+        public GroupController(IMapper mapper, IMediator mediator)
         {
             _mapper = mapper;
             _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Users()
+        public async Task<IActionResult> Groups()
         {
-            var result = await _mediator.Send(new GetAllUsersQueryRequest());
+            var result = await _mediator.Send(new GetAllGroupsQueryRequest());
 
-            return Ok(_mapper.Map<List<UserDto>>(result));
+            return Ok(_mapper.Map<List<GroupDto>>(result));
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetUser(int id)
+        public async Task<IActionResult> GetGroup(int id)
         {
-            var result = await _mediator.Send(new GetUserByIdQueryRequest(id));
+            var result = await _mediator.Send(new GetGroupByIdQueryRequest(id));
 
-            return Ok(_mapper.Map<UserDto>(result));
+            return Ok(_mapper.Map<GroupDto>(result));
         }
     }
 }

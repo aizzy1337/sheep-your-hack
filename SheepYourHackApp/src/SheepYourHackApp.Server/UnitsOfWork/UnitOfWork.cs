@@ -12,6 +12,7 @@ public class UnitOfWork : IUnitOfWork
     private readonly ILogger _logger;
 
     public IUserRepository Users { get; private set; }
+    public IGroupRepository Groups { get; private set; }
     public IFeedRepository Feeds { get; private set; }
     public IEventRepository Events { get; private set; }
 
@@ -22,6 +23,7 @@ public class UnitOfWork : IUnitOfWork
         Users = new UserRepository(_context, _logger);
         Feeds = new FeedRepository(_context, _logger);
         Events = new EventRepository(_context, _logger);
+        Groups = new GroupRepository(_context, _logger);
 
     }
 }

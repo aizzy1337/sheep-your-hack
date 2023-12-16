@@ -1,6 +1,7 @@
 import { Poll } from '@/app/types'
 import { Box, FormControl, FormControlLabel, FormLabel, Paper, Radio, RadioGroup, Typography } from '@mui/material'
 import React from 'react'
+import { Poll } from '@/app/types'
 
 interface Props {
     content: string,
@@ -8,8 +9,6 @@ interface Props {
 }
 
 const FormFeed = ({content, formData}: Props) => {
-
-    console.log(formData)
   return (
     <Box width="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{mt: '1rem', mb: '1rem', gap: "2rem"}} >
         <Typography textAlign="justify" sx={{width: "90%"}} variant="body1">{content}</Typography>

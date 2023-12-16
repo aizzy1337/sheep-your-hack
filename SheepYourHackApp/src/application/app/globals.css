@@ -9,6 +9,12 @@ a {
   align-items: center;
 }
 
+.MuiSvgIcon-root{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mui-dqr9h-MuiRating-label {
   display: flex;
   justify-content: center;

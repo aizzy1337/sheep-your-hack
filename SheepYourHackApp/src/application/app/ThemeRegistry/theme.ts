@@ -10,7 +10,7 @@ const roboto = Roboto({
 
 const secondary = {
   main: '#9cc69b',
-  light: '#42a5f5',
+  light: '#c4e3c3',
   dark: '#1565c0',
   contrastText: '#fff',
 };

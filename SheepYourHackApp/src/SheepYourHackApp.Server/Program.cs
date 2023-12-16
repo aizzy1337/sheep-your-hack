@@ -30,6 +30,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddDependencyInjection();
 builder.Services.AddCors(options => { options.AddPolicy("NoCorsPolicy", builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); }); });
+
 var app = builder.Build();
 
 app.UseRouting();

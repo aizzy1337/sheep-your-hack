@@ -21,6 +21,7 @@ const Header = () => {
                 height={0}
                 style={{ width: '60px', height: 'auto' }}
               />
+              <Typography textAlign="center" variant='h5' sx={{fontWeight: 'bold', color: '#333533'}}>Easy Balance</Typography>
             </Box>
           </Typography>
           <HeaderIcons />

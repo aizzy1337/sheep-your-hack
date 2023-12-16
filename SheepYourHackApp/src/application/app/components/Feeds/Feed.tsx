@@ -13,6 +13,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ShareIcon from '@mui/icons-material/Share';
 import { Poll } from '@/app/types';
+import { ThumbDown } from '@mui/icons-material';
+import { Poll } from '@/app/types';
 
 interface Props {
     content: string,
@@ -32,7 +34,7 @@ const StyledRating = styled(Rating)({
 const Feed = ({content, type, formData}: Props) => {
     return (
         <Box width="60%">
-            <Paper>
+            <Paper elevation={3}>
                 <Box display="flex" justifyContent="start" alignItems="center">
                     <Box display="flex" justifyContent="center" alignItems="start" gap="1rem" sx={{m: '1rem'}}>
                         <Avatar sx={{ bgcolor: green[300] }}>K</Avatar>
@@ -60,8 +62,8 @@ const Feed = ({content, type, formData}: Props) => {
                 </Box>
                 <Divider sx={{width: '100%'}}></Divider>
                 <Box sx={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                    <Button sx={{width: '100%'}} endIcon={<ThumbUpIcon />}>Jestem zainteresowany!</Button>
-                    <Button sx={{width: '100%'}}  endIcon={<ShareIcon />}>Udostepnij</Button>
+                    <Button sx={{width: '100%'}} startIcon={<ThumbUpIcon />}>Jestem zainteresowany!</Button>
+                    <Button sx={{width: '100%'}} startIcon={<ThumbDown />}>{"Nie jestem zainteresowany"}</Button>
                 </Box>
             </Paper>
         </Box>

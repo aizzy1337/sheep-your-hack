@@ -1,6 +1,6 @@
 ﻿namespace SheepYourHackApp.Server.Models
 {
-    public enum GroupRole
+    public enum GroupRole : int
     {
         Employee,
         Leader

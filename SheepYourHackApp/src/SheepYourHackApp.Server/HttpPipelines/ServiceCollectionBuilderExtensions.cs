@@ -10,7 +10,6 @@ public static class ServiceCollectionBuilderExtensions
 {
     public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
     {
-        services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;

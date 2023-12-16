@@ -6,8 +6,8 @@ namespace SheepYourHackApp.Server.Helper;
 
 public class MappingProfile : Profile
 {
-    //public MappingProfile()
-    //{
-    //    CreateMap<TestModel, TestModelDto>();
-    //}
+    public MappingProfile()
+    {
+        CreateMap<User, UserDto>();
+    }
 }

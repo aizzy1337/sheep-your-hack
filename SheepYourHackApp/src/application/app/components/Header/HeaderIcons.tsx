@@ -10,7 +10,7 @@ const HeaderIcons = () => {
     <Box sx={{display: 'flex', gap: '50px', marginLeft: '150px'}} >
         <Box >
             <Link href='/profile'>
-                <Avatar>HP</Avatar>
+            <Avatar sx={{bgcolor: '#FDA5A5', color: '#843434'}}>B</Avatar>
             </Link>
         </Box>
         <Box >

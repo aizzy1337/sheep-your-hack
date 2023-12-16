@@ -3,8 +3,6 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Feed from '../components/Feeds/Feed';
 import { styled } from '@mui/system';
-import NewFeedButton from '../components/AddNewFeed/NewFeedButton';
-import NewFeedSelect from '../components/AddNewFeed/NewFeedSelect';
 import AddNewFeed from '../components/AddNewFeed/AddNewFeed';
 
 const StyledBox = styled(Box)({

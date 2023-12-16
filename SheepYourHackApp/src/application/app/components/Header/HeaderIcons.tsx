@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import { Avatar } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Link from 'next/link';
 
@@ -11,6 +12,11 @@ const HeaderIcons = () => {
         <Box >
             <Link href='/profile'>
             <Avatar sx={{bgcolor: '#FDA5A5', color: '#843434'}}>B</Avatar>
+            </Link>
+        </Box>
+        <Box >
+            <Link href='/calendary'>
+                <EventNoteIcon fontSize='large' color="primary"/>
             </Link>
         </Box>
         <Box >

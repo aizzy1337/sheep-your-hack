@@ -43,5 +43,19 @@ namespace SheepYourHackApp.Server.Controllers
             var result = await _mediator.Send(new AcceptedEventCommandRequest(eventId, userId));
             return Ok();
         }
+
+        [HttpGet("{userId:int}/decline/{eventId:int}")]
+        public async Task<IActionResult> DeclineEvent(int userId, int eventId)
+        {
+            var result = await _mediator.Send(new DeclinedEventCommandRequest(eventId, userId));
+            return Ok();
+        }
+
+        [HttpGet("upcoming/{userId}")]
+        public async Task<IActionResult> UpcomingEvents([FromRoute] int userId)
+        {
+            var result = await _mediator.Send(new GetUpcomingEventsByUserIdRequest(userId));
+            return Ok(result);
+        }
     }
 }

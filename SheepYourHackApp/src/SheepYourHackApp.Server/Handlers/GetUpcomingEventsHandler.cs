@@ -25,12 +25,11 @@ namespace SheepYourHackApp.Server.Handlers
 
         public async Task<List<Event>> Handle(GetUpcomingEventsByUserIdRequest request, CancellationToken ct)
         {
-            var events = await _unitOfWork.Events.GetAll();
-            var feeds = await _unitOfWork.Feeds.GetAll();
-            var groups = await _unitOfWork.Groups.GetAll();
+
+            var events = (await _unitOfWork.Events.GetAll()).Where(x => x.UserId == request.UserId).ToList();
             DateTime yesterday = DateTime.Now.AddDays(-1);
-            var upcomingEvents = events.Where(x => x.StartDate > yesterday);
-            return null;
+            var upcomingEvents = events.Where(x => x.StartDate.Day > yesterday.Day).ToList();
+            return upcomingEvents;
         }
     }
 }

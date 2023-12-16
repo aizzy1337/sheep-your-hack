@@ -39,6 +39,7 @@ const MyGroupPage = () => {
     const data = await res.json()
     setFeeds(data)
   }
+
   useEffect(()=> {
     fetchFeeds()
   },[])
@@ -46,33 +47,16 @@ const MyGroupPage = () => {
   const events = feeds ? feeds.filter(f => f.event) : null
   const polls = feeds ? feeds.filter(f => f.poll) : null
   const posts = feeds ? feeds.filter(f => !f.poll && !f.event) : null
-
-  const fetchFeeds = async () => {
-    const res = await fetch('https://localhost:5003/api/Feeds/1')
-    const data = await res.json()
-    setFeeds(data)
-  }
-  useEffect(()=> {
-    fetchData()
-    fetchFeeds()
-  },[])
-
-  const events = feeds ? feeds.filter(f => f.event) : null
-  const polls = feeds ? feeds.filter(f => f.poll) : null
-  const posts = feeds ? feeds.filter(f => !f.poll && !f.event) : null
-
 
   return (
-    <Box width="100%" display="flex" alignItems="center" flexDirection="column" gap="2rem" sx={{mt: '2rem'}}>
-      <Feed content={context1} type="POST" />
-      <Feed content={context3} type="EVENT" />
-      <Feed content={context3} type="POST" />
-      <Feed content={context3} type="POST" />
-      <Feed content={context3} type="EVENT" />
-      <Feed content={context3} type="FORM" />
-      <AddNewFeed></AddNewFeed>
+    <Box width="100%" display="flex" alignItems="center" flexDirection="column" gap={6} sx={{mt: '2rem'}}>
+      <Box width="100%" display="flex" alignItems="center" flexDirection="column" gap="2rem" sx={{mt: '2rem'}}>
+        {events && events.map(e => <Feed hashtagId={0} content={e.event?.name!} type="EVENT" formData={null}/>)}
+        {polls && polls.map(p => <Feed hashtagId={0} content={p.poll?.name!} type="FORM" formData={p.poll}/>)}
+        {posts && posts.map(p => <Feed hashtagId={0} content={p.message} type="POST" formData={null}/>)}
+        <AddNewFeed></AddNewFeed>
+      </Box>
     </Box>
   )
 }
-
-export default MyGroupPage
+export default MyGroupPage;

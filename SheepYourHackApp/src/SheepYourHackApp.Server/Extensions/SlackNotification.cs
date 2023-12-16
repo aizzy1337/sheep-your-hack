@@ -11,7 +11,7 @@ public static class SlackNotification
 {
     public static void SendSlackNotification(FeedDto feedDto)
     {
-        var slackClient = new SlackClient("https://hooks.slack.com/services/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");
+        var slackClient = new SlackClient("https://hooks.slack.com/services/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");
 
         var feed = new { UserNickName = feedDto.UserNickName };
         var message = feedDto.Message.Length > 100 ? feedDto.Message.Substring(0, 100) + "...." : feedDto.Message;
@@ -30,7 +30,7 @@ public static class SlackNotification
 
         var slackAttachment = new SlackAttachment
         {
-            Text = $"New feed from user *{feed.UserNickName }* {emotki[rand]}",
+            Text = $"New feed from user *{ feed.UserNickName }* {emotki[rand]}",
             Color = "#D00000",
             Fields = new List<SlackField>
             {

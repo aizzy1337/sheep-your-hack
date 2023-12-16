@@ -5,16 +5,23 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import HeaderIcons from './HeaderIcons';
 import Image from 'next/image';
+import logo from '../../../public/logo.png';
 
- const Header = () => {
+const Header = () => {
   return (
-    <Box sx={{ flexGrow: 1}} >
+    <Box sx={{ flexGrow: 1 }} >
       <AppBar position="static" color="secondary">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            LOGO
+            <Image
+              src={logo}
+              alt="LOGO"
+              width={0}
+              height={0}
+              style={{ width: '8%', height: 'auto' }}
+            />
           </Typography>
-            <HeaderIcons />
+          <HeaderIcons />
         </Toolbar>
       </AppBar>
     </Box>

@@ -37,7 +37,9 @@ namespace SheepYourHackApp.Server.Handlers
         public async Task<Feed> Handle(CreateFeedCommandRequest request, CancellationToken cancellationToken)
         {
             var result = _mapper.Map<Feed>(request.feedDto);
+            result.User = await _unitOfWork.Users.GetById(request.feedDto.UserId);
             await _unitOfWork.Feeds.Add(result);
+            await _unitOfWork.CompleteAsync();
             return result;
         }
     }

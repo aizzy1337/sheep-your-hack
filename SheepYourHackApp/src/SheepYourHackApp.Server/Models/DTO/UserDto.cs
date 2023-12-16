@@ -9,6 +9,6 @@ namespace SheepYourHackApp.Server.Models.DTO
         public string LastName { get; set; }
         public string Nickname { get; set; }
         public GroupRole GroupRole { get; set; }
-        public int GroupId { get; set; }
+        public int GroupId { get; set; }   
     }
 }

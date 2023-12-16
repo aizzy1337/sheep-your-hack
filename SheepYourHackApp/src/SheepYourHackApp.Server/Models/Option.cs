@@ -10,7 +10,5 @@ namespace SheepYourHackApp.Server.Models
 
         public int PollId { get; set; }
         public Poll Poll { get; set; }
-
-        public List<UserOption> UserOptions { get; } = new();
     }
 }

@@ -10,6 +10,7 @@ using SheepYourHackApp.Server.HttpPipelines;
 using SheepYourHackHosting;
 using System;
 using System.Reflection;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 

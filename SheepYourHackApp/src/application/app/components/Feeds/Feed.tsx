@@ -13,10 +13,12 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ShareIcon from '@mui/icons-material/Share';
 import { ThumbDown } from '@mui/icons-material';
+import { Poll } from '@/app/types';
 
 interface Props {
     content: string,
-    type: string
+    type: string,
+    formData: Poll | null
 }
 
 const StyledRating = styled(Rating)({
@@ -28,7 +30,7 @@ const StyledRating = styled(Rating)({
     },
   });
 
-const Feed = ({content, type}: Props) => {
+const Feed = ({content, type, formData}: Props) => {
     return (
         <Box width="60%">
             <Paper elevation={3}>
@@ -41,7 +43,14 @@ const Feed = ({content, type}: Props) => {
                         </Box>
                     </Box>
                 </Box>
-                {type == "POST" ? <PostFeed content={content}></PostFeed> : type == "EVENT" ? <EventFeed content={content}></EventFeed> : <FormFeed content={content}></FormFeed>}
+                {type == "POST" ? 
+                    <PostFeed content={content}></PostFeed> 
+                    : 
+                    type == "EVENT" 
+                    ? 
+                    <EventFeed content={content}></EventFeed> 
+                    : 
+                    <FormFeed content={content} formData={formData!}></FormFeed>}
                 <Box sx={{width: '100%', display: 'flex', justifyContent: 'center', mb: '0.5rem'}}>
                     <Box sx={{display: 'flex', width: '90%', gap: '1rem', color: 'grey'}}>
                         <Typography>#food</Typography>

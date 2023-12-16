@@ -25,18 +25,13 @@ const EventsBox = ({counter, data}: Props, ) => {
     const [day, setDay] = useState<string>('')
     const [daysEvents, setDaysEvents] = useState<Event[]>()
 
-    console.log('children:', counter)
-
     const uniqueDays = groupEventsByDay(data)
     
     useEffect(() => {
         setDay(uniqueDays[counter])
         const currentDayEvents = data.filter(e => e.day === day) 
-        console.log(currentDayEvents.length)
         setDaysEvents(currentDayEvents)
     }, [counter])
-    
-    console.log(day, daysEvents?.length)
 
     const workTimeEvents = daysEvents?.filter(e => e.workTime === 'work')
     const freeTimeEvents = daysEvents?.filter(e => e.workTime === 'free')

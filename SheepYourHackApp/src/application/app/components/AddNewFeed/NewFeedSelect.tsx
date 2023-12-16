@@ -19,7 +19,6 @@ const NewFeedSelect = ({visibility}: Props) => {
     const [type, setType] = useState<string>()
 
     const handleOpen = (formType: string) => {
-        console.log(formType)
         setOpenForm(true)
         setType(formType)
     }

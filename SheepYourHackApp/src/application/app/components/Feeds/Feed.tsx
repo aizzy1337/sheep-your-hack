@@ -17,6 +17,10 @@ const Feed = ({content, type}: Props) => {
         <Paper sx={{width: '600px', p: '20px', border: 'solid 2px #DE4C30', borderRadius: '10px', paddingLeft: '30px'}}>
             <Box>
                 <AuthorAvatar />
+                <Box marginBottom={2}>
+                    <h4>Title</h4>
+                    <Typography>10:00 - 12:30</Typography>
+                </Box>
                 <Typography align='justify'>
                     {content}
                 </Typography>
@@ -29,6 +33,10 @@ const Feed = ({content, type}: Props) => {
         <Paper sx={{width: '600px', p: '20px', border: 'solid 2px #9CC69B', borderRadius: '10px'}} >
             <Box display='flex' flexDirection='column'>
                 <AuthorAvatar />
+                <Box marginBottom={2}>
+                    <h4>Title</h4>
+                    <Typography>10:00 - 12:30</Typography>
+                </Box>
                 <Typography align='justify'>
                     {content}
                 </Typography>

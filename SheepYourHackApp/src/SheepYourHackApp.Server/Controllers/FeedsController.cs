@@ -40,9 +40,21 @@ namespace SheepYourHackApp.Server.Controllers
         {
             await _mediator.Send(new CreateFeedCommandRequest(feedDto));
 
-            await TeamsWebhook.SendTeamsNotification(feedDto);
-
             return Ok(feedDto);
+        }
+
+        [HttpPost("teams")]
+        public async Task<IActionResult> PostTeamsNotification([FromBody] FeedDto feedDto)
+        {
+            await TeamsWebhook.SendTeamsNotification(feedDto);
+            return Ok();
+        }
+
+        [HttpPost("slack")]
+        public async Task<IActionResult> PostSlackNotification([FromBody] FeedDto feedDto)
+        {
+            SlackNotification.SendSlackNotification(feedDto);
+            return Ok();
         }
     }
 }

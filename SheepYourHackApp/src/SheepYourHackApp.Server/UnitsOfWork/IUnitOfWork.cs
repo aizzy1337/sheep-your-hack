@@ -10,4 +10,5 @@ public interface IUnitOfWork
     IEventRepository Events { get; }
     IPollRepository Polls { get; }
     IOptionRepository Options { get; }
+    IFeedGroupRepository FeedGroups { get; }
 }

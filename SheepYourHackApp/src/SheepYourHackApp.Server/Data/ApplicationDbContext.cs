@@ -58,7 +58,7 @@ namespace SheepYourHackApp.Server.Data
             var demoFeedGroup7 = new FeedGroup { Id = 7, FeedId = demoFeed6.Id, GroupId = demoGroupA.Id };
             var demoFeedGroup8 = new FeedGroup { Id = 8, FeedId = demoFeed7.Id, GroupId = demoGroupA.Id };
 
-            modelBuilder.Entity<FeedGroup>().HasData(demoFeedGroup1, demoFeedGroup2, demoFeedGroup3, demoFeedGroup4, demoFeedGroup5, demoFeedGroup6);
+            modelBuilder.Entity<FeedGroup>().HasData(demoFeedGroup1, demoFeedGroup2, demoFeedGroup3, demoFeedGroup4, demoFeedGroup5, demoFeedGroup6, demoFeedGroup7, demoFeedGroup8);
 
 
             var demoEvent1 = new Event { Id = 1, Name = "EventA", Organizator="Google", Type = EventType.InWork, EndDate = DateTime.Now.AddDays(3), FeedId = demoFeed1.Id, StartDate = DateTime.Now }; 

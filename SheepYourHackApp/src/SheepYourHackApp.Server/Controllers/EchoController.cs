@@ -31,15 +31,15 @@ namespace SheepYourHackApp.Server.Controllers
         [HttpGet("mapper")]
         public async Task<IActionResult> AutomapperTest()
         {
-            var test = new TestModel();
-            test.Id = 1;
-            test.Name = "test";
+            //var test = new TestModel();
+            //test.Id = 1;
+            //test.Name = "test";
 
-            var result = await _mediator.Send(new TestRequest(test));
+            //var result = await _mediator.Send(new TestRequest(test));
 
-            var testDto = _mapper.Map<TestModelDto>(result);
+            //var testDto = _mapper.Map<TestModelDto>(result);
 
-            return Ok(testDto);
+            return Ok();
         }
     }
 

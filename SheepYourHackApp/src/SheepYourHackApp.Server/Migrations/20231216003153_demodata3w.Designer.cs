@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SheepYourHackApp.Server.Data;
 
@@ -10,9 +11,11 @@ using SheepYourHackApp.Server.Data;
 namespace SheepYourHackApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231216003153_demodata3w")]
+    partial class demodata3w
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
@@ -77,7 +80,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2023, 12, 16, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5168),
+                            CreationDate = new DateTime(2023, 12, 16, 1, 31, 53, 633, DateTimeKind.Local).AddTicks(1445),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
@@ -85,7 +88,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2023, 12, 15, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5216),
+                            CreationDate = new DateTime(2023, 12, 15, 1, 31, 53, 633, DateTimeKind.Local).AddTicks(1487),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
@@ -93,7 +96,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2023, 12, 4, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5224),
+                            CreationDate = new DateTime(2023, 12, 4, 1, 31, 53, 633, DateTimeKind.Local).AddTicks(1494),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
@@ -101,7 +104,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 4,
-                            CreationDate = new DateTime(2023, 11, 25, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5227),
+                            CreationDate = new DateTime(2023, 11, 25, 1, 31, 53, 633, DateTimeKind.Local).AddTicks(1496),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
@@ -109,7 +112,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 5,
-                            CreationDate = new DateTime(2023, 12, 13, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5229),
+                            CreationDate = new DateTime(2023, 12, 13, 1, 31, 53, 633, DateTimeKind.Local).AddTicks(1499),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
@@ -154,24 +157,6 @@ namespace SheepYourHackApp.Server.Migrations
                             Id = 3,
                             FeedId = 1,
                             GroupId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FeedId = 2,
-                            GroupId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FeedId = 4,
-                            GroupId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            FeedId = 5,
-                            GroupId = 1
                         });
                 });
 
@@ -184,9 +169,6 @@ namespace SheepYourHackApp.Server.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
@@ -195,20 +177,17 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Grupa A",
-                            Role = 0
+                            Name = "Grupa A"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Grupa B",
-                            Role = 0
+                            Name = "Grupa B"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Grupa C",
-                            Role = 1
+                            Name = "Grupa C"
                         });
                 });
 

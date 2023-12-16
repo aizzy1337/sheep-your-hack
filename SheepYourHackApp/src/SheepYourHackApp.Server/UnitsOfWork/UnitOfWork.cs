@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using SheepYourHackApp.Server.Data;
 using SheepYourHackApp.Server.Repositories;
 using SheepYourHackApp.Server.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace SheepYourHackApp.Server.UnitsOfWork;
 
@@ -28,6 +29,10 @@ public class UnitOfWork : IUnitOfWork
         Polls = new PollRepository(_context, _logger);
         Options = new OptionRepository(_context, _logger);
         Groups = new GroupRepository(_context, _logger);
+    }
 
+    public async Task CompleteAsync()
+    {
+        await _context.SaveChangesAsync();
     }
 }

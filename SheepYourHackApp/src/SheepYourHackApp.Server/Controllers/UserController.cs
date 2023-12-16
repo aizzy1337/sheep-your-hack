@@ -36,5 +36,12 @@ namespace SheepYourHackApp.Server.Controllers
 
             return Ok(_mapper.Map<UserDto>(result));
         }
+
+        [HttpGet("{userId:int}/accept/{eventId:int}")]
+        public async Task<IActionResult> AcceptEvent(int userId, int eventId)
+        {
+            var result = await _mediator.Send(new AcceptedEventCommandRequest(eventId, userId));
+            return Ok();
+        }
     }
 }

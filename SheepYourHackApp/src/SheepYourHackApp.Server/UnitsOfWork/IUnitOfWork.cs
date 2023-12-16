@@ -1,4 +1,5 @@
 ﻿using SheepYourHackApp.Server.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace SheepYourHackApp.Server.UnitsOfWork;
 
@@ -10,4 +11,5 @@ public interface IUnitOfWork
     IEventRepository Events { get; }
     IPollRepository Polls { get; }
     IOptionRepository Options { get; }
+    Task CompleteAsync();
 }

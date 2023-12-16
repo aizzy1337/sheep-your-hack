@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using SheepYourHackApp.Server.Models;
 using System;
 using System.Reflection.Metadata;
@@ -22,7 +23,7 @@ namespace SheepYourHackApp.Server.Data
                 .HasOne(e => e.Event)
                 .WithOne(e => e.Feed)
                 .HasForeignKey<Event>(e => e.FeedId)
-                .IsRequired(false);
+            .IsRequired(false);
 
             var demoGroupA = new Group { Id = 1, Name = "Grupa A", Role = GroupRole.Employee};
             var demoGroupB = new Group { Id = 2, Name = "Grupa B", Role = GroupRole.Employee };

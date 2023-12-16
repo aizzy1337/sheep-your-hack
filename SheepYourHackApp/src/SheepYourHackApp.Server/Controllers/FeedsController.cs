@@ -35,7 +35,7 @@ namespace SheepYourHackApp.Server.Controllers
         {
             await _mediator.Send(new CreateFeedCommandRequest(feedDto));
 
-            return CreatedAtRoute("Get", new { id = feedDto.Id }, feedDto);
+            return Ok(feedDto);
         }
     }
 }

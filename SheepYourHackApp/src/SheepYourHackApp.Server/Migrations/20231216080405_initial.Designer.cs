@@ -11,8 +11,8 @@ using SheepYourHackApp.Server.Data;
 namespace SheepYourHackApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231216041733_demodata12")]
-    partial class demodata12
+    [Migration("20231216080405_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,10 +44,15 @@ namespace SheepYourHackApp.Server.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FeedId")
                         .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Events");
 
@@ -55,31 +60,31 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndDate = new DateTime(2023, 12, 19, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9914),
+                            EndDate = new DateTime(2023, 12, 19, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2615),
                             FeedId = 1,
                             Name = "EventA",
                             Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9924),
+                            StartDate = new DateTime(2023, 12, 16, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2617),
                             Type = 0
                         },
                         new
                         {
                             Id = 2,
-                            EndDate = new DateTime(2023, 12, 18, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9932),
+                            EndDate = new DateTime(2023, 12, 18, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2619),
                             FeedId = 2,
                             Name = "EventB",
                             Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9938),
+                            StartDate = new DateTime(2023, 12, 16, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2621),
                             Type = 1
                         },
                         new
                         {
                             Id = 3,
-                            EndDate = new DateTime(2023, 12, 20, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9946),
+                            EndDate = new DateTime(2023, 12, 20, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2622),
                             FeedId = 3,
                             Name = "EventC",
                             Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9951),
+                            StartDate = new DateTime(2023, 12, 16, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2624),
                             Type = 0
                         });
                 });
@@ -112,7 +117,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9591),
+                            CreationDate = new DateTime(2023, 12, 16, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2532),
                             Message = "Free webinar about something",
                             Type = 1,
                             UserId = 5
@@ -120,7 +125,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2023, 12, 15, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9711),
+                            CreationDate = new DateTime(2023, 12, 15, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2574),
                             Message = "Free webinar about something",
                             Type = 1,
                             UserId = 5
@@ -128,7 +133,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2023, 12, 4, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9724),
+                            CreationDate = new DateTime(2023, 12, 4, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2578),
                             Message = "Free webinar about something",
                             Type = 1,
                             UserId = 5
@@ -136,7 +141,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 4,
-                            CreationDate = new DateTime(2023, 11, 25, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9731),
+                            CreationDate = new DateTime(2023, 11, 25, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2580),
                             Message = "Free webinar about something",
                             Type = 2,
                             UserId = 5
@@ -144,7 +149,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 5,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9739),
+                            CreationDate = new DateTime(2023, 12, 13, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2582),
                             Message = "Free webinar about something",
                             Type = 2,
                             UserId = 5
@@ -152,7 +157,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 6,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9746),
+                            CreationDate = new DateTime(2023, 12, 13, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2584),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
@@ -160,7 +165,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 7,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9760),
+                            CreationDate = new DateTime(2023, 12, 13, 9, 4, 5, 768, DateTimeKind.Local).AddTicks(2586),
                             Message = "Free webinar about something",
                             Type = 0,
                             UserId = 5
@@ -232,6 +237,9 @@ namespace SheepYourHackApp.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("FeedId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
@@ -239,6 +247,8 @@ namespace SheepYourHackApp.Server.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FeedId");
 
                     b.ToTable("Groups");
 
@@ -325,46 +335,6 @@ namespace SheepYourHackApp.Server.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("EventId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("Tag");
-                });
-
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.TagEvent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("EventId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("TagEvent");
-                });
-
             modelBuilder.Entity("SheepYourHackApp.Server.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -432,55 +402,19 @@ namespace SheepYourHackApp.Server.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.UserEvent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("EventId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserEvent");
-                });
-
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.UserOption", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("OptionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OptionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserOption");
-                });
-
             modelBuilder.Entity("SheepYourHackApp.Server.Models.Event", b =>
                 {
                     b.HasOne("SheepYourHackApp.Server.Models.Feed", "Feed")
                         .WithOne("Event")
                         .HasForeignKey("SheepYourHackApp.Server.Models.Event", "FeedId");
 
+                    b.HasOne("SheepYourHackApp.Server.Models.User", "User")
+                        .WithMany("Events")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Feed");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SheepYourHackApp.Server.Models.Feed", b =>
@@ -513,6 +447,13 @@ namespace SheepYourHackApp.Server.Migrations
                     b.Navigation("Group");
                 });
 
+            modelBuilder.Entity("SheepYourHackApp.Server.Models.Group", b =>
+                {
+                    b.HasOne("SheepYourHackApp.Server.Models.Feed", null)
+                        .WithMany("Groups")
+                        .HasForeignKey("FeedId");
+                });
+
             modelBuilder.Entity("SheepYourHackApp.Server.Models.Option", b =>
                 {
                     b.HasOne("SheepYourHackApp.Server.Models.Poll", "Poll")
@@ -533,32 +474,6 @@ namespace SheepYourHackApp.Server.Migrations
                     b.Navigation("Feed");
                 });
 
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.Tag", b =>
-                {
-                    b.HasOne("SheepYourHackApp.Server.Models.Event", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("EventId");
-                });
-
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.TagEvent", b =>
-                {
-                    b.HasOne("SheepYourHackApp.Server.Models.Event", "Event")
-                        .WithMany("TagEvents")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SheepYourHackApp.Server.Models.Tag", "Tag")
-                        .WithMany("TagEvents")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-
-                    b.Navigation("Tag");
-                });
-
             modelBuilder.Entity("SheepYourHackApp.Server.Models.User", b =>
                 {
                     b.HasOne("SheepYourHackApp.Server.Models.Group", "Group")
@@ -570,58 +485,13 @@ namespace SheepYourHackApp.Server.Migrations
                     b.Navigation("Group");
                 });
 
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.UserEvent", b =>
-                {
-                    b.HasOne("SheepYourHackApp.Server.Models.Event", "Event")
-                        .WithMany("UserEvents")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SheepYourHackApp.Server.Models.User", "User")
-                        .WithMany("UserEvents")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.UserOption", b =>
-                {
-                    b.HasOne("SheepYourHackApp.Server.Models.Option", "Option")
-                        .WithMany("UserOptions")
-                        .HasForeignKey("OptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SheepYourHackApp.Server.Models.User", "User")
-                        .WithMany("UserOptions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Option");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.Event", b =>
-                {
-                    b.Navigation("TagEvents");
-
-                    b.Navigation("Tags");
-
-                    b.Navigation("UserEvents");
-                });
-
             modelBuilder.Entity("SheepYourHackApp.Server.Models.Feed", b =>
                 {
                     b.Navigation("Event");
 
                     b.Navigation("FeedGroups");
+
+                    b.Navigation("Groups");
 
                     b.Navigation("Poll");
                 });
@@ -633,28 +503,16 @@ namespace SheepYourHackApp.Server.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.Option", b =>
-                {
-                    b.Navigation("UserOptions");
-                });
-
             modelBuilder.Entity("SheepYourHackApp.Server.Models.Poll", b =>
                 {
                     b.Navigation("Options");
                 });
 
-            modelBuilder.Entity("SheepYourHackApp.Server.Models.Tag", b =>
-                {
-                    b.Navigation("TagEvents");
-                });
-
             modelBuilder.Entity("SheepYourHackApp.Server.Models.User", b =>
                 {
+                    b.Navigation("Events");
+
                     b.Navigation("Feeds");
-
-                    b.Navigation("UserEvents");
-
-                    b.Navigation("UserOptions");
                 });
 #pragma warning restore 612, 618
         }

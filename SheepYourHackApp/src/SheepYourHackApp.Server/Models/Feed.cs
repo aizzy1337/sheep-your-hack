@@ -17,6 +17,7 @@ namespace SheepYourHackApp.Server.Models
 
         public Poll? Poll { get; set; }
         public Event? Event { get; set; }
+        public List<Group> Groups { get; set; }
 
         public List<FeedGroup> FeedGroups { get; set; }
     }

@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SheepYourHackApp.Server.Repositories.Interfaces;
 
-public interface IRepository<TEnity> where TEnity : class
+public interface IRepository<TEntity> where TEntity : class
 {
-    Task<TEnity?> GetById(int id);
-    Task<IEnumerable<TEnity>> GetAll();
+    Task<TEntity?> GetById(int id);
+    Task<IEnumerable<TEntity>> GetAll();
+    
 
-    Task<bool> Add(TEnity enity);
-    Task<bool> Update(TEnity enity);
-    Task<bool> Remove(TEnity enity);
+    Task<bool> Add(TEntity enity);
+    Task<bool> Update(TEntity enity);
+    Task<bool> Remove(TEntity enity);
 }

@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SheepYourHackApp.Server.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SheepYourHackApp.Server.Repositories
@@ -46,6 +48,17 @@ namespace SheepYourHackApp.Server.Repositories
             _dbSet.Remove(entity);
             return true;
         }
-        
+        public virtual async Task<IEnumerable<TEntity>> Incldue(params Expression<Func<TEntity, object>>[] includes)
+        {
+            var query = _dbSet.AsQueryable();
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.ToListAsync();
+        }
+
     }
 }

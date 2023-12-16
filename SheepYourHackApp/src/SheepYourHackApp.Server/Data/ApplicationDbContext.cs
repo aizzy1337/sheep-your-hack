@@ -38,9 +38,9 @@ namespace SheepYourHackApp.Server.Data
 
             modelBuilder.Entity<User>().HasData(demoUser1, demoUser2, demoUser3, demoUser4, demoUser5);
 
-            var demoFeed1 = new Feed { Id = 1, CreationDate = DateTime.Now, Message = "Free webinar about something", Type = FeedType.Plain, UserId = demoUser5.Id };
-            var demoFeed2 = new Feed { Id = 2, CreationDate = DateTime.Now.AddDays(-1), Message = "Free webinar about something", Type = FeedType.Plain, UserId = demoUser5.Id };
-            var demoFeed3 = new Feed { Id = 3, CreationDate = DateTime.Now.AddDays(-12), Message = "Free webinar about something", Type = FeedType.Plain, UserId = demoUser5.Id };
+            var demoFeed1 = new Feed { Id = 1, CreationDate = DateTime.Now, Message = "Free webinar about something", Type = FeedType.Event, UserId = demoUser5.Id };
+            var demoFeed2 = new Feed { Id = 2, CreationDate = DateTime.Now.AddDays(-1), Message = "Free webinar about something", Type = FeedType.Event, UserId = demoUser5.Id };
+            var demoFeed3 = new Feed { Id = 3, CreationDate = DateTime.Now.AddDays(-12), Message = "Free webinar about something", Type = FeedType.Event, UserId = demoUser5.Id };
             var demoFeed4 = new Feed { Id = 4, CreationDate = DateTime.Now.AddDays(-21), Message = "Free webinar about something", Type = FeedType.Plain, UserId = demoUser5.Id };
             var demoFeed5 = new Feed { Id = 5, CreationDate = DateTime.Now.AddDays(-3), Message = "Free webinar about something", Type = FeedType.Plain, UserId = demoUser5.Id };
 
@@ -54,6 +54,13 @@ namespace SheepYourHackApp.Server.Data
             var demoFeedGroup6 = new FeedGroup { Id = 6, FeedId = demoFeed5.Id, GroupId = demoGroupA.Id };
 
             modelBuilder.Entity<FeedGroup>().HasData(demoFeedGroup1, demoFeedGroup2, demoFeedGroup3, demoFeedGroup4, demoFeedGroup5, demoFeedGroup6);
+
+
+            var demoEvent1 = new Event { Id = 1, Name = "EventA", Organizator="Google", Type = EventType.InWork, EndDate = DateTime.Now.AddDays(3), FeedId = demoFeed1.Id, StartDate = DateTime.Now }; 
+            var demoEvent2 = new Event { Id = 2, Name = "EventB", Organizator = "Google", Type = EventType.AfterWork, EndDate = DateTime.Now.AddDays(2), FeedId = demoFeed2.Id, StartDate = DateTime.Now };
+            var demoEvent3 = new Event { Id = 3, Name = "EventC", Organizator = "Google", Type = EventType.InWork, EndDate = DateTime.Now.AddDays(4), FeedId = demoFeed3.Id, StartDate = DateTime.Now };
+
+            modelBuilder.Entity<Event>().HasData(demoEvent1, demoEvent2, demoEvent3);
 
             base.OnModelCreating(modelBuilder);
         }

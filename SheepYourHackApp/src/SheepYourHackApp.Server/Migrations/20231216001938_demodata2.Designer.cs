@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SheepYourHackApp.Server.Data;
 
@@ -10,9 +11,11 @@ using SheepYourHackApp.Server.Data;
 namespace SheepYourHackApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231216001938_demodata2")]
+    partial class demodata2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
@@ -72,48 +75,6 @@ namespace SheepYourHackApp.Server.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Feeds");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreationDate = new DateTime(2023, 12, 16, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5168),
-                            Message = "Free webinar about something",
-                            Type = 0,
-                            UserId = 5
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreationDate = new DateTime(2023, 12, 15, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5216),
-                            Message = "Free webinar about something",
-                            Type = 0,
-                            UserId = 5
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreationDate = new DateTime(2023, 12, 4, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5224),
-                            Message = "Free webinar about something",
-                            Type = 0,
-                            UserId = 5
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreationDate = new DateTime(2023, 11, 25, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5227),
-                            Message = "Free webinar about something",
-                            Type = 0,
-                            UserId = 5
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreationDate = new DateTime(2023, 12, 13, 1, 36, 57, 150, DateTimeKind.Local).AddTicks(5229),
-                            Message = "Free webinar about something",
-                            Type = 0,
-                            UserId = 5
-                        });
                 });
 
             modelBuilder.Entity("SheepYourHackApp.Server.Models.FeedGroup", b =>
@@ -135,44 +96,6 @@ namespace SheepYourHackApp.Server.Migrations
                     b.HasIndex("GroupId");
 
                     b.ToTable("FeedGroup");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FeedId = 1,
-                            GroupId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FeedId = 1,
-                            GroupId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FeedId = 1,
-                            GroupId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FeedId = 2,
-                            GroupId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FeedId = 4,
-                            GroupId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            FeedId = 5,
-                            GroupId = 1
-                        });
                 });
 
             modelBuilder.Entity("SheepYourHackApp.Server.Models.Group", b =>
@@ -184,9 +107,6 @@ namespace SheepYourHackApp.Server.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
@@ -195,20 +115,7 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Grupa A",
-                            Role = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Grupa B",
-                            Role = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Grupa C",
-                            Role = 1
+                            Name = "Grupa A"
                         });
                 });
 
@@ -316,39 +223,7 @@ namespace SheepYourHackApp.Server.Migrations
                             FirstName = "John",
                             GroupId = 1,
                             LastName = "Smith",
-                            Nickname = "JSmith1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FirstName = "Paul",
-                            GroupId = 1,
-                            LastName = "Smith",
-                            Nickname = "JSmith2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FirstName = "Mark",
-                            GroupId = 2,
-                            LastName = "Smith",
-                            Nickname = "JSmith3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FirstName = "Oink",
-                            GroupId = 2,
-                            LastName = "Smith",
-                            Nickname = "JSmith4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FirstName = "Ihuano",
-                            GroupId = 3,
-                            LastName = "Smith",
-                            Nickname = "JSmith5"
+                            Nickname = "JSmith"
                         });
                 });
 

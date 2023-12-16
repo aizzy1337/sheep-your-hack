@@ -1,3 +1,4 @@
+import { Poll } from '@/app/types'
 import { Box, FormControl, FormControlLabel, FormLabel, Paper, Radio, RadioGroup, Typography } from '@mui/material'
 import React from 'react'
 import { Poll } from '@/app/types'

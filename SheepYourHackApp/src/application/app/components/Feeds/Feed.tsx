@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ShareIcon from '@mui/icons-material/Share';
+import { Poll } from '@/app/types';
 import { ThumbDown } from '@mui/icons-material';
 import { Poll } from '@/app/types';
 

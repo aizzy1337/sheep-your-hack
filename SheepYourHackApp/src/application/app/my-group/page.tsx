@@ -20,6 +20,15 @@ const StyledBox = styled(Box)({
   },
 });
 
+interface User {
+  id: number,
+  firstname: string,
+  lastname: string,
+  nickname: string,
+  groupRole: number,
+  groupId: number
+}
+
 
 
 const MyGroupPage = () => {
@@ -38,12 +47,29 @@ const MyGroupPage = () => {
   const polls = feeds ? feeds.filter(f => f.poll) : null
   const posts = feeds ? feeds.filter(f => !f.poll && !f.event) : null
 
+  const fetchFeeds = async () => {
+    const res = await fetch('https://localhost:5003/api/Feeds/1')
+    const data = await res.json()
+    setFeeds(data)
+  }
+  useEffect(()=> {
+    fetchData()
+    fetchFeeds()
+  },[])
+
+  const events = feeds ? feeds.filter(f => f.event) : null
+  const polls = feeds ? feeds.filter(f => f.poll) : null
+  const posts = feeds ? feeds.filter(f => !f.poll && !f.event) : null
+
 
   return (
     <Box width="100%" display="flex" alignItems="center" flexDirection="column" gap="2rem" sx={{mt: '2rem'}}>
-      {events && events.map(e => <Feed content={e.event?.name!} type="EVENT" formData={null}/>)}
-      {polls && polls.map(p => <Feed content={p.poll?.name!} type="FORM" formData={p.poll}/>)}
-      {posts && posts.map(p => <Feed content={p.message} type="POST" formData={null}/>)}
+      <Feed content={context1} type="POST" />
+      <Feed content={context3} type="EVENT" />
+      <Feed content={context3} type="POST" />
+      <Feed content={context3} type="POST" />
+      <Feed content={context3} type="EVENT" />
+      <Feed content={context3} type="FORM" />
       <AddNewFeed></AddNewFeed>
     </Box>
   )

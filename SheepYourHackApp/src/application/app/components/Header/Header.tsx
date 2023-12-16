@@ -13,13 +13,15 @@ const Header = () => {
       <AppBar position="static" color="secondary">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Image
-              src={logo}
-              alt="LOGO"
-              width={0}
-              height={0}
-              style={{ width: '8%', height: 'auto' }}
-            />
+            <Box sx={{display: 'flex'}}>
+              <Image
+                src={logo}
+                alt="LOGO"
+                width={0}
+                height={0}
+                style={{ width: '60px', height: 'auto' }}
+              />
+            </Box>
           </Typography>
           <HeaderIcons />
         </Toolbar>

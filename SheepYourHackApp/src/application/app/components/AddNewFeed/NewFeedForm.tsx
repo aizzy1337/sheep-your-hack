@@ -1,9 +1,14 @@
 'use client'
 import React, { useState } from 'react'
 import Box from '@mui/material/Box'
-import { Button } from '@mui/material'
+import { Button, Divider, Icon, Typography } from '@mui/material'
 import TextField from '@mui/material/TextField';
-
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import teamsIcon from '../../../public/microsoft-teams-1.svg';
+import slackIcon from '../../../public/slack-new-logo.svg';
 interface Props {
     type: string,
     visibility: string,
@@ -24,8 +29,6 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
         clearForm()
         //fetch('http..', {POST})
     }
-
-    if(type === 'POST' || type === "EVENT") {
         return (
             <Box 
                 sx={{
@@ -53,11 +56,19 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                     justifyContent='space-around'
                     alignItems='center'
                     >
+                    <Typography width="90%" variant='h5' textAlign="start" >{type == 'POST' ? "Dodaj post" : type == "FORM" ? "Dodaj ankiete" : "Dodaj wydarzenie"}</Typography>
+                    <Box width="90%">
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DateTimePicker
+                                label="Wybierz date"
+                            />
+                        </LocalizationProvider>
+                    </Box>
                     <TextField
                         id="outlined-multiline-flexible"
-                        label="Post context...."
+                        label={type == 'POST' ? 'Dodaj opis postu....' : type == "FORM" ? "Dodaj opis ankiety..." : "Dodaj opis wydarzenia..."}
                         multiline
-                        rows={16}
+                        rows={type == "FORM" ? 4 : 16}
                         value={context}
                         onChange={(e) => setContext(e.target.value)}
                         sx={{
@@ -65,16 +76,36 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                             
                         }}
                     />
-                    <Box display='flex' gap={5}>
-                    <Button variant="contained" color="secondary" onClick={close} >Close</Button>
-                    <Button variant="contained" color="secondary" onClick={handleSubmit} >Submit</Button>
+                    
 
+                    {type == "FORM" ? 
+                        <Box sx={{width: '90%'}}>
+                            <Typography>Dodaj ankiete</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                                <RadioButtonUncheckedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                                <TextField id="input-with-sx" label="Pytanie nr 1" variant="standard" />
+                            </Box>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                                <RadioButtonUncheckedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                                <TextField id="input-with-sx" label="Pytanie nr 2" variant="standard" />
+                            </Box>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                                <RadioButtonUncheckedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                                <TextField id="input-with-sx" label="Pytanie nr 3" variant="standard" />
+                            </Box>
+                        </Box>
+                    
+                    : <></>}
+
+                    <Box display='flex' justifyContent='end' sx={{width: '90%'}}>
+                        <Box display='flex' gap={5}>
+                            <Button variant="contained" color="primary" onClick={close} >Anuluj</Button>
+                            <Button variant="contained" color="primary" onClick={handleSubmit} >Zapisz</Button>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
           )
     }
-  
-}
 
 export default NewFeedForm

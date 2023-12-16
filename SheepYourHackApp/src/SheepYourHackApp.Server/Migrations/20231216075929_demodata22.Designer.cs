@@ -11,8 +11,8 @@ using SheepYourHackApp.Server.Data;
 namespace SheepYourHackApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231216041733_demodata12")]
-    partial class demodata12
+    [Migration("20231216075929_demodata22")]
+    partial class demodata22
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,31 +55,31 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndDate = new DateTime(2023, 12, 19, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9914),
+                            EndDate = new DateTime(2023, 12, 19, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2590),
                             FeedId = 1,
-                            Name = "EventA",
+                            Name = "Paintball after work",
                             Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9924),
-                            Type = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EndDate = new DateTime(2023, 12, 18, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9932),
-                            FeedId = 2,
-                            Name = "EventB",
-                            Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9938),
+                            StartDate = new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2594),
                             Type = 1
                         },
                         new
                         {
+                            Id = 2,
+                            EndDate = new DateTime(2023, 12, 18, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2596),
+                            FeedId = 2,
+                            Name = "How to make lanch in 15 min.",
+                            Organizator = "Jummi mniam mniam",
+                            StartDate = new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2598),
+                            Type = 0
+                        },
+                        new
+                        {
                             Id = 3,
-                            EndDate = new DateTime(2023, 12, 20, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9946),
+                            EndDate = new DateTime(2023, 12, 20, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2601),
                             FeedId = 3,
-                            Name = "EventC",
-                            Organizator = "Google",
-                            StartDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9951),
+                            Name = "Best way to make life easier",
+                            Organizator = "5minCraft",
+                            StartDate = new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2603),
                             Type = 0
                         });
                 });
@@ -112,58 +112,58 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2023, 12, 16, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9591),
-                            Message = "Free webinar about something",
+                            CreationDate = new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2465),
+                            Message = "Free webinar about something good for you",
                             Type = 1,
-                            UserId = 5
+                            UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2023, 12, 15, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9711),
+                            CreationDate = new DateTime(2023, 12, 15, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2521),
                             Message = "Free webinar about something",
                             Type = 1,
-                            UserId = 5
+                            UserId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2023, 12, 4, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9724),
+                            CreationDate = new DateTime(2023, 12, 4, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2526),
                             Message = "Free webinar about something",
                             Type = 1,
-                            UserId = 5
+                            UserId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreationDate = new DateTime(2023, 11, 25, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9731),
+                            CreationDate = new DateTime(2023, 11, 25, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2528),
                             Message = "Free webinar about something",
                             Type = 2,
-                            UserId = 5
+                            UserId = 1
                         },
                         new
                         {
                             Id = 5,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9739),
+                            CreationDate = new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2530),
                             Message = "Free webinar about something",
                             Type = 2,
-                            UserId = 5
+                            UserId = 1
                         },
                         new
                         {
                             Id = 6,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9746),
+                            CreationDate = new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2532),
                             Message = "Free webinar about something",
                             Type = 0,
-                            UserId = 5
+                            UserId = 1
                         },
                         new
                         {
                             Id = 7,
-                            CreationDate = new DateTime(2023, 12, 13, 5, 17, 33, 586, DateTimeKind.Local).AddTicks(9760),
+                            CreationDate = new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2537),
                             Message = "Free webinar about something",
                             Type = 0,
-                            UserId = 5
+                            UserId = 1
                         });
                 });
 
@@ -196,21 +196,15 @@ namespace SheepYourHackApp.Server.Migrations
                         },
                         new
                         {
-                            Id = 2,
-                            FeedId = 1,
-                            GroupId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FeedId = 1,
-                            GroupId = 3
-                        },
-                        new
-                        {
                             Id = 4,
+                            FeedId = 3,
+                            GroupId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
                             FeedId = 2,
-                            GroupId = 2
+                            GroupId = 1
                         },
                         new
                         {
@@ -222,6 +216,18 @@ namespace SheepYourHackApp.Server.Migrations
                         {
                             Id = 6,
                             FeedId = 5,
+                            GroupId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            FeedId = 6,
+                            GroupId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            FeedId = 7,
                             GroupId = 1
                         });
                 });
@@ -247,18 +253,6 @@ namespace SheepYourHackApp.Server.Migrations
                         {
                             Id = 1,
                             Name = "Grupa A",
-                            Role = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Grupa B",
-                            Role = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Grupa C",
                             Role = 1
                         });
                 });
@@ -285,13 +279,13 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Bardzo kocham boga",
+                            Name = "Pizza",
                             PollId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Bardzo nienawidzę boga",
+                            Name = "Pasta",
                             PollId = 1
                         });
                 });
@@ -305,6 +299,9 @@ namespace SheepYourHackApp.Server.Migrations
                     b.Property<int?>("FeedId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FeedId")
@@ -316,12 +313,8 @@ namespace SheepYourHackApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FeedId = 4
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FeedId = 5
+                            FeedId = 4,
+                            Name = "What for lunch"
                         });
                 });
 
@@ -397,38 +390,6 @@ namespace SheepYourHackApp.Server.Migrations
                             GroupId = 1,
                             LastName = "Smith",
                             Nickname = "JSmith1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FirstName = "Paul",
-                            GroupId = 1,
-                            LastName = "Smith",
-                            Nickname = "JSmith2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FirstName = "Mark",
-                            GroupId = 2,
-                            LastName = "Smith",
-                            Nickname = "JSmith3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FirstName = "Oink",
-                            GroupId = 2,
-                            LastName = "Smith",
-                            Nickname = "JSmith4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FirstName = "Ihuano",
-                            GroupId = 3,
-                            LastName = "Smith",
-                            Nickname = "JSmith5"
                         });
                 });
 

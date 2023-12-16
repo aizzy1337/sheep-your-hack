@@ -19,7 +19,7 @@ public class GetAllFeedQuaryHandler : IRequestHandler<GetAllFeedQueruRequest, Li
     private readonly ILogger<GetAllFeedQuaryHandler> _logger;
 
     public GetAllFeedQuaryHandler(IUnitOfWork unitOfWork, ILogger<GetAllFeedQuaryHandler> logger)
-    {
+    {   
         _unitOfWork = unitOfWork;
         _logger = logger;
     }

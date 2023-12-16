@@ -6,164 +6,168 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SheepYourHackApp.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class demodata11 : Migration
+    public partial class demodata23 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Name",
-                table: "Options",
-                type: "TEXT",
-                nullable: true);
-
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "Id",
                 keyValue: 1,
-                columns: new[] { "EndDate", "StartDate" },
-                values: new object[] { new DateTime(2023, 12, 19, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1608), new DateTime(2023, 12, 16, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1611) });
+                columns: new[] { "EndDate", "Organizator", "StartDate" },
+                values: new object[] { new DateTime(2023, 12, 19, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3310), "ShootYourSelf", new DateTime(2023, 12, 16, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3315) });
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "Id",
                 keyValue: 2,
                 columns: new[] { "EndDate", "StartDate" },
-                values: new object[] { new DateTime(2023, 12, 18, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1614), new DateTime(2023, 12, 16, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1616) });
+                values: new object[] { new DateTime(2023, 12, 18, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3319), new DateTime(2023, 12, 16, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3322) });
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "Id",
                 keyValue: 3,
                 columns: new[] { "EndDate", "StartDate" },
-                values: new object[] { new DateTime(2023, 12, 20, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1619), new DateTime(2023, 12, 16, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1621) });
+                values: new object[] { new DateTime(2023, 12, 20, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3325), new DateTime(2023, 12, 16, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3328) });
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 16, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1467));
+                value: new DateTime(2023, 12, 16, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3143));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 15, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1528));
+                value: new DateTime(2023, 12, 15, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3214));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 4, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1533));
+                value: new DateTime(2023, 12, 4, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3220));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 4,
                 column: "CreationDate",
-                value: new DateTime(2023, 11, 25, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1536));
+                value: new DateTime(2023, 11, 25, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3224));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 5,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 13, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1539));
+                value: new DateTime(2023, 12, 13, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3227));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 6,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 13, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1542));
+                value: new DateTime(2023, 12, 13, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3231));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 7,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 13, 5, 8, 23, 496, DateTimeKind.Local).AddTicks(1548));
+                value: new DateTime(2023, 12, 13, 9, 1, 8, 207, DateTimeKind.Local).AddTicks(3238));
+
+            migrationBuilder.UpdateData(
+                table: "Polls",
+                keyColumn: "Id",
+                keyValue: 1,
+                column: "Name",
+                value: "What for lunch?");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Name",
-                table: "Options");
-
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "Id",
                 keyValue: 1,
-                columns: new[] { "EndDate", "StartDate" },
-                values: new object[] { new DateTime(2023, 12, 19, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4514), new DateTime(2023, 12, 16, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4518) });
+                columns: new[] { "EndDate", "Organizator", "StartDate" },
+                values: new object[] { new DateTime(2023, 12, 19, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2590), "Google", new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2594) });
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "Id",
                 keyValue: 2,
                 columns: new[] { "EndDate", "StartDate" },
-                values: new object[] { new DateTime(2023, 12, 18, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4522), new DateTime(2023, 12, 16, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4525) });
+                values: new object[] { new DateTime(2023, 12, 18, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2596), new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2598) });
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "Id",
                 keyValue: 3,
                 columns: new[] { "EndDate", "StartDate" },
-                values: new object[] { new DateTime(2023, 12, 20, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4528), new DateTime(2023, 12, 16, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4530) });
+                values: new object[] { new DateTime(2023, 12, 20, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2601), new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2603) });
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 16, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4368));
+                value: new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2465));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 15, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4427));
+                value: new DateTime(2023, 12, 15, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2521));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 4, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4436));
+                value: new DateTime(2023, 12, 4, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2526));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 4,
                 column: "CreationDate",
-                value: new DateTime(2023, 11, 25, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4439));
+                value: new DateTime(2023, 11, 25, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2528));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 5,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 13, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4442));
+                value: new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2530));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 6,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 13, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4445));
+                value: new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2532));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: 7,
                 column: "CreationDate",
-                value: new DateTime(2023, 12, 13, 5, 5, 17, 544, DateTimeKind.Local).AddTicks(4451));
+                value: new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2537));
+
+            migrationBuilder.UpdateData(
+                table: "Polls",
+                keyColumn: "Id",
+                keyValue: 1,
+                column: "Name",
+                value: "What for lunch");
         }
     }
 }

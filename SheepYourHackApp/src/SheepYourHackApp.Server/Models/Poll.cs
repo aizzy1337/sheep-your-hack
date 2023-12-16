@@ -6,6 +6,7 @@ namespace SheepYourHackApp.Server.Models
     public class Poll
     {
         public int Id { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Option> Options { get; } = new List<Option>();
 

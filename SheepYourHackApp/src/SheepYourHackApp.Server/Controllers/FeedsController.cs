@@ -21,10 +21,10 @@ namespace SheepYourHackApp.Server.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("{groupId}")]
+        public async Task<IActionResult> Get([FromRoute] int groupId)
         {
-            var result = await _mediator.Send(new GetAllFeedQueruRequest());
+            var result = await _mediator.Send(new GetAllFeedQueruRequest(groupId));
 
             return Ok(_mapper.Map<List<FeedDto>>(result));
         }

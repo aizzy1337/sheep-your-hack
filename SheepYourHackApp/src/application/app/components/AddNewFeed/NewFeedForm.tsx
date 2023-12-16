@@ -10,6 +10,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import teamsIcon from '../../../public/microsoft-teams-1.svg';
 import slackIcon from '../../../public/slack-new-logo.svg';
 import Image from 'next/image';
+import dayjs, { Dayjs } from 'dayjs';
 
 interface Props {
     type: string,
@@ -20,6 +21,7 @@ interface Props {
 const NewFeedForm = ({type, visibility, close}: Props) => {
 
     const [context, setContext] = useState<string>('')
+    const [date, setDate] = useState<Dayjs | null>()
 
     const clearForm = () => {
         setContext('')
@@ -62,6 +64,8 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DateTimePicker
                                 label="Wybierz date"
+                                value={date}
+                                onChange={e => setDate(e)}
                             />
                         </LocalizationProvider>
                     </Box>

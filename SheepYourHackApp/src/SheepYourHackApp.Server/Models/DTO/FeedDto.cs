@@ -9,6 +9,6 @@ public class FeedDto
     public string UserNickName { get; set; }
     public DateTime CreationDate { get; set; }
     public FeedType Type { get; set; }
-    public Poll? Poll { get; set; }
-    public int EventId { get; set; }
+    public PollDto? Poll { get; set; }
+    public EventDto? Event { get; set; }
 }

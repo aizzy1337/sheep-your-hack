@@ -31,10 +31,25 @@ public class GetAllFeedQuaryHandler : IRequestHandler<GetAllFeedQueruRequest, Li
 
         var events = await _unitOfWork.Events.GetAll();
 
-        foreach(var feed in result)
+        var polls = await _unitOfWork.Polls.GetAll();
+
+        var options = await _unitOfWork.Options.GetAll();
+
+        foreach (var feed in result)
         {
             feed.User = users.FirstOrDefault(x => x.Id == feed.UserId);
             feed.Event = events.FirstOrDefault(x => x.FeedId == feed.Id);
+            feed.Poll = polls.FirstOrDefault(x => x.FeedId == feed.Id);
+            
+            if (feed.Poll != null)
+            {
+                var opt = options.Where(x => x.PollId == feed.Poll.Id).ToList();
+                foreach (var o in opt)
+                {
+                    feed.Poll.Options.Add(o);
+                }
+            }
+            
         }
 
         return result.ToList();

@@ -15,6 +15,8 @@ public class UnitOfWork : IUnitOfWork
     public IGroupRepository Groups { get; private set; }
     public IFeedRepository Feeds { get; private set; }
     public IEventRepository Events { get; private set; }
+    public IPollRepository Polls { get; private set; }
+    public IOptionRepository Options { get; private set; }
 
     public UnitOfWork(ApplicationDbContext context, ILoggerFactory logger)
     {
@@ -23,6 +25,8 @@ public class UnitOfWork : IUnitOfWork
         Users = new UserRepository(_context, _logger);
         Feeds = new FeedRepository(_context, _logger);
         Events = new EventRepository(_context, _logger);
+        Polls = new PollRepository(_context, _logger);
+        Options = new OptionRepository(_context, _logger);
         Groups = new GroupRepository(_context, _logger);
 
     }

@@ -18,17 +18,19 @@ public class UnitOfWork : IUnitOfWork
     public IEventRepository Events { get; private set; }
     public IPollRepository Polls { get; private set; }
     public IOptionRepository Options { get; private set; }
+    public IFeedGroupRepository FeedGroups { get; private set; }
 
     public UnitOfWork(ApplicationDbContext context, ILoggerFactory logger)
     {
         _context = context;
-        _logger = logger.CreateLogger("repositoryLogger");
+        _logger = logger.CreateLogger("repositorrpjjrjyLogger");
         Users = new UserRepository(_context, _logger);
         Feeds = new FeedRepository(_context, _logger);
         Events = new EventRepository(_context, _logger);
         Polls = new PollRepository(_context, _logger);
         Options = new OptionRepository(_context, _logger);
         Groups = new GroupRepository(_context, _logger);
+        FeedGroups = new FeedGroupRepository(_context, _logger);
     }
 
     public async Task CompleteAsync()

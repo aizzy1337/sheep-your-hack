@@ -1,6 +1,7 @@
 ﻿using Castle.Core.Logging;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using SheepYourHackApp.Server.Models;
 using SheepYourHackApp.Server.UnitsOfWork;
 using System.Collections.Generic;
@@ -11,14 +12,14 @@ using System.Threading.Tasks;
 namespace SheepYourHackApp.Server.Handlers;
 
 
-public record GetAllFeedQueruRequest() : IRequest<List<Feed>> { }
+public record GetAllFeedQueruRequest(int groupId) : IRequest<List<Feed>> { }
 public class GetAllFeedQuaryHandler : IRequestHandler<GetAllFeedQueruRequest, List<Feed>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<GetAllFeedQuaryHandler> _logger;
 
     public GetAllFeedQuaryHandler(IUnitOfWork unitOfWork, ILogger<GetAllFeedQuaryHandler> logger)
-    {
+    {   
         _unitOfWork = unitOfWork;
         _logger = logger;
     }
@@ -52,6 +53,8 @@ public class GetAllFeedQuaryHandler : IRequestHandler<GetAllFeedQueruRequest, Li
             
         }
 
-        return result.ToList();
+        var groupFeeds = (await _unitOfWork.FeedGroups.GetAll()).Where(x => x.GroupId == request.groupId).ToList();
+
+        return result.Where(item1 => groupFeeds.Any(item2 => item2.FeedId == item1.Id)).ToList();
     }
 }

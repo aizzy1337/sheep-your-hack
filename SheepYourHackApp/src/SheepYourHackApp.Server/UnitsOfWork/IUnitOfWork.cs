@@ -12,4 +12,5 @@ public interface IUnitOfWork
     IPollRepository Polls { get; }
     IOptionRepository Options { get; }
     Task CompleteAsync();
+    IFeedGroupRepository FeedGroups { get; }
 }

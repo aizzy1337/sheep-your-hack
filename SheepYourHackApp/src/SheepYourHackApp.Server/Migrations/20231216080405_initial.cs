@@ -8,11 +8,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SheepYourHackApp.Server.Migrations
 {
     /// <inheritdoc />
+<<<<<<<< HEAD:SheepYourHackApp/src/SheepYourHackApp.Server/Migrations/20231216080405_initial.cs
     public partial class initial : Migration
+========
+    public partial class demodata22 : Migration
+>>>>>>>> master:SheepYourHackApp/src/SheepYourHackApp.Server/Migrations/20231216075929_demodata22.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+<<<<<<<< HEAD:SheepYourHackApp/src/SheepYourHackApp.Server/Migrations/20231216080405_initial.cs
             migrationBuilder.CreateTable(
                 name: "Events",
                 columns: table => new
@@ -62,6 +67,8 @@ namespace SheepYourHackApp.Server.Migrations
                     table.PrimaryKey("PK_Feeds", x => x.Id);
                 });
 
+========
+>>>>>>>> master:SheepYourHackApp/src/SheepYourHackApp.Server/Migrations/20231216075929_demodata22.cs
             migrationBuilder.CreateTable(
                 name: "Groups",
                 columns: table => new
@@ -69,8 +76,12 @@ namespace SheepYourHackApp.Server.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
+<<<<<<<< HEAD:SheepYourHackApp/src/SheepYourHackApp.Server/Migrations/20231216080405_initial.cs
                     Role = table.Column<int>(type: "INTEGER", nullable: false),
                     FeedId = table.Column<int>(type: "INTEGER", nullable: true)
+========
+                    Role = table.Column<int>(type: "INTEGER", nullable: false)
+>>>>>>>> master:SheepYourHackApp/src/SheepYourHackApp.Server/Migrations/20231216075929_demodata22.cs
                 },
                 constraints: table =>
                 {
@@ -123,6 +134,144 @@ namespace SheepYourHackApp.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+<<<<<<<< HEAD:SheepYourHackApp/src/SheepYourHackApp.Server/Migrations/20231216080405_initial.cs
+========
+                name: "Feeds",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Message = table.Column<string>(type: "TEXT", nullable: true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Type = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feeds", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Feeds_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Organizator = table.Column<string>(type: "TEXT", nullable: true),
+                    Type = table.Column<int>(type: "INTEGER", nullable: false),
+                    FeedId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_Feeds_FeedId",
+                        column: x => x.FeedId,
+                        principalTable: "Feeds",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FeedGroup",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FeedId = table.Column<int>(type: "INTEGER", nullable: false),
+                    GroupId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FeedGroup", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FeedGroup_Feeds_FeedId",
+                        column: x => x.FeedId,
+                        principalTable: "Feeds",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FeedGroup_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Polls",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    FeedId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Polls", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Polls_Feeds_FeedId",
+                        column: x => x.FeedId,
+                        principalTable: "Feeds",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tag",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Value = table.Column<string>(type: "TEXT", nullable: true),
+                    EventId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tag", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tag_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserEvent",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserEvent", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserEvent_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserEvent_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+>>>>>>>> master:SheepYourHackApp/src/SheepYourHackApp.Server/Migrations/20231216075929_demodata22.cs
                 name: "Options",
                 columns: table => new
                 {
@@ -217,6 +366,68 @@ namespace SheepYourHackApp.Server.Migrations
                 {
                     { 1, "Bardzo kocham boga", 1 },
                     { 2, "Bardzo nienawidzę boga", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Groups",
+                columns: new[] { "Id", "Name", "Role" },
+                values: new object[] { 1, "Grupa A", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "FirstName", "GroupId", "LastName", "Nickname" },
+                values: new object[] { 1, "John", 1, "Smith", "JSmith1" });
+
+            migrationBuilder.InsertData(
+                table: "Feeds",
+                columns: new[] { "Id", "CreationDate", "Message", "Type", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2465), "Free webinar about something good for you", 1, 1 },
+                    { 2, new DateTime(2023, 12, 15, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2521), "Free webinar about something", 1, 1 },
+                    { 3, new DateTime(2023, 12, 4, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2526), "Free webinar about something", 1, 1 },
+                    { 4, new DateTime(2023, 11, 25, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2528), "Free webinar about something", 2, 1 },
+                    { 5, new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2530), "Free webinar about something", 2, 1 },
+                    { 6, new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2532), "Free webinar about something", 0, 1 },
+                    { 7, new DateTime(2023, 12, 13, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2537), "Free webinar about something", 0, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "Id", "EndDate", "FeedId", "Name", "Organizator", "StartDate", "Type" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 12, 19, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2590), 1, "Paintball after work", "Google", new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2594), 1 },
+                    { 2, new DateTime(2023, 12, 18, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2596), 2, "How to make lanch in 15 min.", "Jummi mniam mniam", new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2598), 0 },
+                    { 3, new DateTime(2023, 12, 20, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2601), 3, "Best way to make life easier", "5minCraft", new DateTime(2023, 12, 16, 8, 59, 29, 304, DateTimeKind.Local).AddTicks(2603), 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FeedGroup",
+                columns: new[] { "Id", "FeedId", "GroupId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 2, 1 },
+                    { 4, 3, 1 },
+                    { 5, 4, 1 },
+                    { 6, 5, 1 },
+                    { 7, 6, 1 },
+                    { 8, 7, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Polls",
+                columns: new[] { "Id", "FeedId", "Name" },
+                values: new object[] { 1, 4, "What for lunch" });
+
+            migrationBuilder.InsertData(
+                table: "Options",
+                columns: new[] { "Id", "Name", "PollId" },
+                values: new object[,]
+                {
+                    { 1, "Pizza", 1 },
+                    { 2, "Pasta", 1 }
                 });
 
             migrationBuilder.CreateIndex(

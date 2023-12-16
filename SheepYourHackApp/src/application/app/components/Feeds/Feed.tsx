@@ -13,8 +13,7 @@ import campFire from "../../../public/campfire.jpg";
 import meditation from "../../../public/meditation.jpeg";
 import running from "../../../public/running.jpg";
 import lunch from "../../../public/lunch.jpg";
-import { green } from '@mui/material/colors';
-import { Poll } from '@/app/types';
+import { blue, green, orange, purple } from '@mui/material/colors';
 
 interface Props {
     content: string,
@@ -24,14 +23,25 @@ interface Props {
 }
 
 const hashtags = [
-    ['#food', '#eathealth', '#quicklunch'],
     ['#jog', '#lifestyle', '#fitwork'],
     ['#joinus', '#meditation', '#peace'],
+    ['#food', '#eathealth', '#quicklunch'],
     ['#campfire', '#greatfood', '#timetomeet'],
 ]
 
+const names = [
+    'Łukasz Sawina',
+    'Arkadiusz Zając',
+    'Konrad Warzecha',
+    'Michał Kmak'
+]
+
 const photos = [
-    lunch, running, meditation, campFire,
+    running, meditation, lunch, campFire,
+]
+
+const colors = [
+    green, blue, purple, orange
 ]
 
 
@@ -44,9 +54,9 @@ const Feed = ({content, type, hashtagId, formData}: Props) => {
             <Paper elevation={3}>
                 <Box display="flex" justifyContent="start" alignItems="center">
                     <Box display="flex" justifyContent="center" alignItems="start" gap="1rem" sx={{m: '1rem'}}>
-                        <Avatar sx={{ bgcolor: green[300] }}>K</Avatar>
+                        <Avatar sx={{ bgcolor: colors[hashtagId][300] }}>{names[hashtagId][0]}</Avatar>
                         <Box>
-                            <Typography sx={{ fontWeight: 'bold' }} variant='body2'>Kamil Salamonczyk</Typography>
+                            <Typography sx={{ fontWeight: 'bold' }} variant='body2'>{names[hashtagId]}</Typography>
                             <Typography sx={{color: 'grey'}} variant='body2'>Manager</Typography>
                         </Box>
                     </Box>

@@ -5,6 +5,7 @@ import Feed from '../components/Feeds/Feed';
 import { styled } from '@mui/system';
 import AddNewFeed from '../components/AddNewFeed/AddNewFeed';
 import { Feeds } from '../types';
+import { pollName } from '../addText';
 
 const StyledBox = styled(Box)({
   overflowY: 'scroll',
@@ -48,12 +49,23 @@ const MyGroupPage = () => {
   const polls = feeds ? feeds.filter(f => f.poll) : null
   const posts = feeds ? feeds.filter(f => !f.poll && !f.event) : null
 
+  var x = -1;
+
   return (
     <Box width="100%" display="flex" alignItems="center" flexDirection="column" gap={6} sx={{mt: '2rem'}}>
       <Box width="100%" display="flex" alignItems="center" flexDirection="column" gap="2rem" sx={{mt: '2rem'}}>
-        {events && events.map(e => <Feed hashtagId={0} content={e.event?.name!} type="EVENT" formData={null}/>)}
-        {polls && polls.map(p => <Feed hashtagId={0} content={p.poll?.name!} type="FORM" formData={p.poll}/>)}
-        {posts && posts.map(p => <Feed hashtagId={0} content={p.message} type="POST" formData={null}/>)}
+        {events && events.map(e => {
+          x += 1;
+        return <Feed hashtagId={x % 3} content={e.message!} type="EVENT" formData={null}/>
+        })}
+        {polls && polls.map(p => {
+          x += 1;
+        return <Feed hashtagId={x % 4} content={pollName} type="FORM" formData={p.poll}/>
+        })}
+        {posts && posts.map(p => {
+          x += 1;
+        return <Feed hashtagId={x % 4} content={p.message} type="POST" formData={null}/>
+        })}
         <AddNewFeed></AddNewFeed>
       </Box>
     </Box>

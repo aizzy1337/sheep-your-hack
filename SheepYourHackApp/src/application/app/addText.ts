@@ -1,0 +1,1 @@
+export const pollName = "Jutro w pracy organizujemy dzień wspólnego obiadu! Poniżej możecie zagłosować jaka kuchnia najbardziej wam odpowiada! Smacznego kodowania!";

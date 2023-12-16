@@ -17,7 +17,7 @@ const Feed = ({content, type}: Props) => {
         <Paper sx={{width: '600px', p: '20px', border: 'solid 2px #DE4C30', borderRadius: '10px', paddingLeft: '30px'}}>
             <Box>
                 <AuthorAvatar />
-                <Typography>
+                <Typography align='justify'>
                     {content}
                 </Typography>
             </Box>
@@ -29,7 +29,7 @@ const Feed = ({content, type}: Props) => {
         <Paper sx={{width: '600px', p: '20px', border: 'solid 2px #9CC69B', borderRadius: '10px'}} >
             <Box display='flex' flexDirection='column'>
                 <AuthorAvatar />
-                <Typography>
+                <Typography align='justify'>
                     {content}
                 </Typography>
                 <EventIcons />

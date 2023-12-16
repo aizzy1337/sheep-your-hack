@@ -1,24 +1,26 @@
+import { Poll } from '@/app/types'
 import { Box, FormControl, FormControlLabel, FormLabel, Paper, Radio, RadioGroup, Typography } from '@mui/material'
 import React from 'react'
 
 interface Props {
     content: string,
+    formData: Poll
 }
 
-const FormFeed = ({content}: Props) => {
+const FormFeed = ({content, formData}: Props) => {
+
+    console.log(formData)
   return (
     <Box width="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{mt: '1rem', mb: '1rem', gap: "2rem"}} >
         <Typography textAlign="justify" sx={{width: "90%"}} variant="body1">{content}</Typography>
         <Box sx={{width: "90%"}}>
             <FormControl>
-                <FormLabel>Na jaką kuchnie masz dziś ochote?</FormLabel>
+                <FormLabel>{formData.name}</FormLabel>
                 <RadioGroup
-                    defaultValue="Tajskie"
+                    defaultValue={formData.options[0]}
                     name="radio-buttons-group"
                 >
-                    <FormControlLabel value="Tajskie" control={<Radio />} label="Tajskie" />
-                    <FormControlLabel value="Chińskie" control={<Radio />} label="Chińskie" />
-                    <FormControlLabel value="Indyjskie" control={<Radio />} label="Indyjskie" />
+                    {formData.options.map(o => <FormControlLabel key={o.id} value={o.name} control={<Radio />} label={o.name} />)}
                 </RadioGroup>
             </FormControl>
         </Box>

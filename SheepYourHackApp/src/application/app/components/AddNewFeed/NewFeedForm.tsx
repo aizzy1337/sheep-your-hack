@@ -7,6 +7,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import dayjs, { Dayjs } from 'dayjs';
 import teamsIcon from '../../../public/microsoft-teams-1.svg';
 import slackIcon from '../../../public/slack-new-logo.svg';
 interface Props {
@@ -18,8 +19,9 @@ interface Props {
 const NewFeedForm = ({type, visibility, close}: Props) => {
 
     const [context, setContext] = useState<string>('')
+    const [date, setDate] = useState<Dayjs | null>()
     console.log(context)
-
+    console.log(date)
     const clearForm = () => {
         setContext('')
         close()
@@ -60,7 +62,9 @@ const NewFeedForm = ({type, visibility, close}: Props) => {
                     <Box width="90%">
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DateTimePicker
-                                label="Wybierz date"
+                            value={date}
+                            onChange={e => setDate(e)}
+                                label="Wybierz date" 
                             />
                         </LocalizationProvider>
                     </Box>
